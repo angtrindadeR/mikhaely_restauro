@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikhaely Aparecida — Conservação & Restauro</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-oliva: #556B2F;
+            --azul-marinho: #1B2A4A;
+            --off-white: #FDFBF7;
+            --terracota: #B85B35;
+            --ocre-dourado: #C5A059;
+            --texto-escuro: #2C3E50;
+            --cinza-leve: #EFECE6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--off-white);
+            color: var(--texto-escuro);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand-logo {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* HEADER & NAVEGAÇÃO */
+        header {
+            background-color: var(--azul-marinho);
+            color: var(--off-white);
+            padding: 1.2rem 8%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--off-white);
+        }
+
+        .brand-logo span {
+            color: var(--ocre-dourado);
+            font-size: 0.9rem;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+
+        nav a {
+            color: var(--off-white);
+            text-decoration: none;
+            margin-left: 1.8rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--ocre-dourado);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--azul-marinho) 0%, #0F1A30 100%);
+            color: var(--off-white);
+            padding: 5rem 8%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--off-white);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto 2rem auto;
+            color: var(--cinza-leve);
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--ocre-dourado);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0.3rem;
+        }
+
+        .btn-primary {
+            background-color: var(--verde-oliva);
+            color: var(--off-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #435424;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--ocre-dourado);
+            color: var(--ocre-dourado);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--ocre-dourado);
+            color: var(--azul-marinho);
+        }
+
+        /* SEÇÕES GERAIS */
+        section {
+            padding: 4rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--azul-marinho);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--verde-oliva);
+            margin: 0.5rem auto 0 auto;
+        }
+
+        /* SOBRE (SEM FOTO / COM EMBLEMA) */
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .monogram-box {
+            width: 220px;
+            height: 220px;
+            border: 2px solid var(--verde-oliva);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #F4F0E8;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .monogram-box .symbol {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--azul-marinho);
+            line-height: 1;
+        }
+
+        .monogram-box .subtext {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--verde-oliva);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 650px;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: var(--cinza-leve);
+            border-left: 3px solid var(--verde-oliva);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ESPECIALIDADES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: #FFF;
+            padding: 2rem;
+            border-radius: 6px;
+            border-top: 4px solid var(--verde-oliva);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--azul-marinho);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* PORTFÓLIO / FICHAS */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #FFF;
+            border: 1px solid var(--cinza-leve);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-img-placeholder {
+            height: 200px;
+            background-color: #E2DDD5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            color: var(--terracota);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .project-info h3 {
+            color: var(--azul-marinho);
+            margin: 0.3rem 0 0.8rem 0;
+        }
+
+        /* CONTATO */
+        .contact-section {
+            background-color: var(--azul-marinho);
+            color: var(--off-white);
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: var(--off-white);
+        }
+
+        .contact-box {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #0F1A30;
+            color: #888;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            nav a {
+                margin: 0 0.5rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="brand-logo">
+            MIKHAELY APARECIDA
+            <span>CONSERVAÇÃO & RESTAURO</span>
+        </div>
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#especialidades">Atuação</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </header>
+
+    <!-- HERO / ABERTURA -->
+    <section class="hero">
+        <h1>Rigor técnico na preservação do patrimônio</h1>
+        <p class="tagline">"Preservando a história, eternizando memórias."</p>
+        <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais à documentação digital.</p>
+        <div style="margin-top: 1.5rem;">
+            <a href="#contato" class="btn btn-primary">Solicitar Avaliação</a>
+            <a href="#portfolio" class="btn btn-secondary">Ver Projetos</a>
+        </div>
+    </section>
+
+    <!-- SOBRE MIM (COM MONOGRAMA) -->
+    <section id="sobre">
+        <h2 class="section-title">Sobre a Conservadora</h2>
+        <div class="about-container">
+            <div class="monogram-box">
+                <div class="symbol">MA</div>
+                <div class="subtext">Restauro</div>
+            </div>
+            <div class="about-text">
+                <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora dedicada à preservação da memória física e cultural do patrimônio histórico brasileiro.</p>
+                <p>Minha trajetória é fundamentada em duas das mais prestigiadas instituições do país: a graduação em <strong>Conservação e Restauro de Bens Imóveis pelo IFMG - Campus Ouro Preto</strong> e a especialização em <strong>Bens Móveis pela Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
+                <p>Trabalho com rigor científico, assegurando intervenções mínimas, materiais reversíveis e total respeito à autenticidade de cada obra.</p>
+                
+                <div class="credentials">
+                    <div class="badge">IFMG Ouro Preto — Bens Imóveis</div>
+                    <div class="badge">FAOP — Bens Móveis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades" style="background-color: var(--cinza-leve);">
+        <h2 class="section-title">Áreas de Atuação</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>📐 Levantamento Fotogramétrico</h3>
+                <p>Documentação e mapeamento tridimensional de precisão para acervos e estruturas arquitetônicas, auxiliando no diagnóstico e salvaguarda digital.</p>
+            </div>
+            <div class="service-card">
+                <h3>🪵 Restauro em Madeira</h3>
+                <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética em placas históricas (repúblicas), móveis e entalhes.</p>
+            </div>
+            <div class="service-card">
+                <h3>📖 Documentos & Livros Antigos</h3>
+                <p>Higienização a seco, desacidificação, reestruturação de suportes em papel, encadernação histórica e conservação de acervos bibliográficos.</p>
+            </div>
+            <div class="service-card">
+                <h3>🗿 Arte Sacra & Esculturas</h3>
+                <p>Fixação de camada pictórica, consolidação de suporte, remoção de repinturas inadequadas e reintegração cromática em imagens polícromas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFÓLIO / PROJETOS -->
+    <section id="portfolio">
+        <h2 class="section-title">Portfólio de Intervenções</h2>
+        <div class="portfolio-grid">
+            
+            <div class="project-card">
+                <div class="project-img-placeholder">[ Registro Fotográfico / Antes & Depois ]</div>
+                <div class="project-info">
+                    <span class="project-tag">Restauro em Madeira</span>
+                    <h3>Placa de República Histórica</h3>
+                    <p>Tratamento contra cupins, consolidação do suporte de madeira e reintegração da pintura original.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-placeholder">[ Modelo 3D / Mapeamento Digital ]</div>
+                <div class="project-info">
+                    <span class="project-tag">Fotogrametria</span>
+                    <h3>Levantamento Tridimensional</h3>
+                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e salvaguarda digital.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img-placeholder">[ Registro de Processo Técnico ]</div>
+                <div class="project-info">
+                    <span class="project-tag">Livros e Documentos</span>
+                    <h3>Restauração de Livro Antigo</h3>
+                    <p>Higienização de suporte em papel, consolidação de rasgos e reconstrução da encadernação original.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="contact-section">
+        <h2 class="section-title">Solicite uma Avaliação Técnico-Diagnóstica</h2>
+        <div class="contact-box">
+            <p>Atendimento a colecionadores, instituições e acervos particulares em Ouro Preto, Região dos Inconfidentes e Belo Horizonte.</p>
+            
+            <!-- Substitua o número abaixo pelo WhatsApp real dela -->
+            <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20restauro." target="_blank" class="whatsapp-btn">
+                📱 Falar pelo WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Mikhaely Aparecida — Conservação & Restauro. Ouro Preto / MG.</p>
+    </footer>
+
+</body>
+</html>
