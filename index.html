@@ -182,7 +182,7 @@
             margin: 0.6rem auto 0 auto;
         }
 
-        /* SOBRE MIM */
+        /* SOBRE MIM & MONOGRAMA / CHANCELA REFINADA */
         .about-container {
             display: flex;
             gap: 3.5rem;
@@ -192,32 +192,63 @@
         }
 
         .monogram-box {
-            width: 200px;
-            height: 200px;
+            width: 210px;
+            height: 210px;
             border: 2px solid var(--ocre-dourado);
+            border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: var(--off-white-card);
+            background: radial-gradient(circle, #FFFFFF 50%, #F5F2EA 100%);
+            box-shadow: 0 8px 25px rgba(22, 34, 56, 0.07);
+            position: relative;
+            padding: 1.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Anel pontilhado clássico interno */
+        .monogram-box::before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            right: 7px;
+            bottom: 7px;
+            border: 1px dashed var(--ocre-dourado);
             border-radius: 50%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+            opacity: 0.7;
+        }
+
+        .monogram-box:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(197, 160, 89, 0.22);
         }
 
         .monogram-box .symbol {
             font-family: 'Cinzel', serif;
             font-size: 3.2rem;
+            font-weight: 700;
             color: var(--azul-marinho);
             line-height: 1;
+            letter-spacing: 4px;
+            text-indent: 4px;
+        }
+
+        .monogram-divider {
+            width: 60px;
+            height: 10px;
+            margin: 0.4rem 0;
+            fill: var(--ocre-dourado);
         }
 
         .monogram-box .subtext {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
             color: var(--verde-oliva);
-            margin-top: 0.4rem;
             text-transform: uppercase;
             font-weight: 600;
+            text-align: center;
         }
 
         .about-text {
@@ -496,14 +527,20 @@
         </div>
     </section>
 
-    <!-- SOBRE MIM (TEXTO ATUALIZADO VIA LATTES) -->
+    <!-- SOBRE MIM -->
     <section id="sobre">
         <h2 class="section-title">Sobre a Conservadora</h2>
         <div class="about-container">
+            
+            <!-- NOVO MONOGRAMA TIPO CHANCELA / SELO PATRIMONIAL -->
             <div class="monogram-box">
                 <div class="symbol">MA</div>
-                <div class="subtext">Restauro</div>
+                <svg class="monogram-divider" viewBox="0 0 100 12">
+                    <path d="M0,6 L42,6 L50,1 L58,6 L100,6 M50,11 L44,6 L50,1 L56,6 Z" />
+                </svg>
+                <div class="subtext">Conservação & Restauro</div>
             </div>
+
             <div class="about-text">
                 <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora formada pelo <strong>IFMG (Campus Ouro Preto)</strong> e especialista em Bens Móveis pela <strong>Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
                 <p>Minha atuação une o rigor técnico da conservação tradicional a abordagens inovadoras — como o uso de fotogrametria aplicada ao patrimônio edificado e tecnologias de fabricação digital.</p>
