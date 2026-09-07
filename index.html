@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikhaely Aparecida — Conservação & Restauro</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            /* PALETA REORGANIZADA - VERDE OLIVA COMO PRINCIPAL */
             --verde-oliva: #556B2F;
+            --verde-oliva-escuro: #3B4A20;
+            --verde-oliva-suave: #6B8E23;
             --azul-marinho: #1B2A4A;
             --off-white: #FDFBF7;
             --terracota: #B85B35;
             --ocre-dourado: #C5A059;
             --texto-escuro: #2C3E50;
-            --cinza-leve: #EFECE6;
+            --cinza-leve: #F3F0E9;
         }
 
         html {
@@ -43,13 +47,13 @@
 
         /* HEADER & NAVEGAÇÃO */
         header {
-            background-color: var(--azul-marinho);
+            background-color: var(--verde-oliva-escuro);
             color: var(--off-white);
             padding: 1.2rem 8%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -64,7 +68,7 @@
 
         .brand-logo span {
             color: var(--ocre-dourado);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: block;
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
@@ -87,9 +91,9 @@
 
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(135deg, var(--azul-marinho) 0%, #0F1A30 100%);
+            background: linear-gradient(135deg, var(--verde-oliva-escuro) 0%, var(--verde-oliva) 100%);
             color: var(--off-white);
-            padding: 5rem 8%;
+            padding: 5.5rem 8%;
             text-align: center;
         }
 
@@ -103,15 +107,16 @@
             font-size: 1.1rem;
             max-width: 750px;
             margin: 0 auto 2rem auto;
-            color: var(--cinza-leve);
+            color: #E2E8D5;
             font-weight: 300;
         }
 
         .tagline {
             font-style: italic;
             color: var(--ocre-dourado);
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
         }
 
         .btn {
@@ -128,22 +133,22 @@
         }
 
         .btn-primary {
-            background-color: var(--verde-oliva);
-            color: var(--off-white);
+            background-color: var(--ocre-dourado);
+            color: var(--verde-oliva-escuro);
         }
 
         .btn-primary:hover {
-            background-color: #435424;
+            background-color: #D4B16A;
         }
 
         .btn-secondary {
-            border: 1px solid var(--ocre-dourado);
-            color: var(--ocre-dourado);
+            border: 1px solid var(--off-white);
+            color: var(--off-white);
         }
 
         .btn-secondary:hover {
-            background-color: var(--ocre-dourado);
-            color: var(--azul-marinho);
+            background-color: var(--off-white);
+            color: var(--verde-oliva-escuro);
         }
 
         /* SEÇÕES GERAIS */
@@ -154,7 +159,7 @@
         .section-title {
             text-align: center;
             font-size: 2rem;
-            color: var(--azul-marinho);
+            color: var(--verde-oliva-escuro);
             margin-bottom: 2.5rem;
             position: relative;
         }
@@ -163,12 +168,12 @@
             content: '';
             display: block;
             width: 50px;
-            height: 2px;
-            background-color: var(--verde-oliva);
+            height: 3px;
+            background-color: var(--ocre-dourado);
             margin: 0.5rem auto 0 auto;
         }
 
-        /* SOBRE (COM MONOGRAMA) */
+        /* SOBRE MIM */
         .about-container {
             display: flex;
             gap: 3rem;
@@ -180,29 +185,30 @@
         .monogram-box {
             width: 220px;
             height: 220px;
-            border: 2px solid var(--verde-oliva);
+            border: 3px solid var(--verde-oliva);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #F4F0E8;
+            background-color: #F0EFEA;
             border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
         }
 
         .monogram-box .symbol {
             font-family: 'Cinzel', serif;
             font-size: 3.5rem;
-            color: var(--azul-marinho);
+            color: var(--verde-oliva-escuro);
             line-height: 1;
         }
 
         .monogram-box .subtext {
             font-size: 0.75rem;
             letter-spacing: 2px;
-            color: var(--verde-oliva);
+            color: var(--ocre-dourado);
             margin-top: 0.5rem;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .about-text {
@@ -226,6 +232,7 @@
         .badge {
             background-color: var(--cinza-leve);
             border-left: 3px solid var(--verde-oliva);
+            color: var(--verde-oliva-escuro);
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             font-weight: 600;
@@ -252,7 +259,7 @@
         }
 
         .service-card h3 {
-            color: var(--azul-marinho);
+            color: var(--verde-oliva-escuro);
             margin-bottom: 0.8rem;
             font-size: 1.1rem;
         }
@@ -268,9 +275,9 @@
 
         .tab-btn {
             background-color: #FFF;
-            border: 1px solid var(--azul-marinho);
-            color: var(--azul-marinho);
-            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--verde-oliva);
+            color: var(--verde-oliva-escuro);
+            padding: 0.6rem 1.4rem;
             border-radius: 20px;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
@@ -280,7 +287,7 @@
         }
 
         .tab-btn:hover, .tab-btn.active {
-            background-color: var(--azul-marinho);
+            background-color: var(--verde-oliva);
             color: var(--off-white);
         }
 
@@ -304,15 +311,16 @@
 
         .project-img-placeholder {
             height: 200px;
-            background-color: #E2DDD5;
+            background-color: #E6E3DB;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777;
+            color: #666;
             font-style: italic;
             font-size: 0.9rem;
             padding: 1rem;
             text-align: center;
+            border-bottom: 1px solid #DDD;
         }
 
         .project-info {
@@ -327,14 +335,14 @@
         }
 
         .project-info h3 {
-            color: var(--azul-marinho);
+            color: var(--verde-oliva-escuro);
             margin: 0.3rem 0 0.8rem 0;
             font-size: 1.1rem;
         }
 
-        /* CONTATO & WHATSAPP */
+        /* CONTATO & REDES SOCIAIS */
         .contact-section {
-            background-color: var(--azul-marinho);
+            background-color: var(--verde-oliva-escuro);
             color: var(--off-white);
             text-align: center;
         }
@@ -344,41 +352,60 @@
         }
 
         .contact-box {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            font-size: 1.1rem;
-            padding: 0.9rem 2rem;
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            font-size: 1rem;
+            padding: 0.9rem 1.8rem;
             border-radius: 30px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            margin-top: 1.5rem;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             transition: transform 0.3s, background-color 0.3s;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
         }
 
         .whatsapp-btn:hover {
             background-color: #20ba5a;
-            transform: scale(1.03);
+            transform: translateY(-3px);
         }
 
-        .whatsapp-icon {
-            width: 24px;
-            height: 24px;
+        .instagram-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .instagram-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-3px);
+        }
+
+        .social-icon {
+            width: 22px;
+            height: 22px;
             fill: currentColor;
         }
 
         /* FOOTER */
         footer {
-            background-color: #0F1A30;
-            color: #888;
+            background-color: #2A3517;
+            color: #AAA;
             text-align: center;
             padding: 1.5rem;
             font-size: 0.85rem;
@@ -397,11 +424,16 @@
             .hero h1 {
                 font-size: 1.8rem;
             }
+            .social-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- CABEÇALHO -->
     <header>
         <div class="brand-logo">
             MIKHAELY APARECIDA
@@ -415,6 +447,7 @@
         </nav>
     </header>
 
+    <!-- HERO / ABERTURA -->
     <section class="hero" id="inicio">
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
@@ -425,6 +458,7 @@
         </div>
     </section>
 
+    <!-- SOBRE MIM -->
     <section id="sobre">
         <h2 class="section-title">Sobre a Conservadora</h2>
         <div class="about-container">
@@ -435,7 +469,7 @@
             <div class="about-text">
                 <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora dedicada à preservação da memória física e cultural do patrimônio histórico brasileiro.</p>
                 <p>Minha trajetória é fundamentada em duas das mais prestigiadas instituições do país: a graduação em <strong>Conservação e Restauro de Bens Imóveis pelo IFMG - Campus Ouro Preto</strong> e a especialização em <strong>Bens Móveis pela Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
-                <p>Trabalho com rigor científico e sensibilidade artística, assegurando intervenções mínimas, materiais reversíveis e criação de peças exclusivas em cerâmica fria.</p>
+                <p>Trabalho com rigor científico e sensibilidade artística, assegurando intervenções mínimas, materiais reversíveis e criação autoral em cerâmica fria.</p>
                 
                 <div class="credentials">
                     <div class="badge">IFMG Ouro Preto — Bens Imóveis</div>
@@ -445,6 +479,7 @@
         </div>
     </section>
 
+    <!-- ESPECIALIDADES -->
     <section id="especialidades" style="background-color: var(--cinza-leve);">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
@@ -467,9 +502,11 @@
         </div>
     </section>
 
+    <!-- PORTFÓLIO COM ABAS -->
     <section id="portfolio">
         <h2 class="section-title">Portfólio de Trabalhos</h2>
         
+        <!-- ABAS DE FILTRO DO PORTFÓLIO -->
         <div class="portfolio-tabs">
             <button class="tab-btn active" onclick="filterPortfolio('todos')">Todos</button>
             <button class="tab-btn" onclick="filterPortfolio('fotogrametria')">Fotogrametria</button>
@@ -479,6 +516,7 @@
 
         <div class="portfolio-grid">
             
+            <!-- ITEM 1: FOTOGRAMETRIA -->
             <div class="project-card" data-category="fotogrametria">
                 <div class="project-img-placeholder">[ Mapeamento 3D / Nuvem de Pontos ]</div>
                 <div class="project-info">
@@ -488,6 +526,7 @@
                 </div>
             </div>
 
+            <!-- ITEM 2: MADEIRA -->
             <div class="project-card" data-category="madeira">
                 <div class="project-img-placeholder">[ Registro de Restauro / Madeira ]</div>
                 <div class="project-info">
@@ -497,6 +536,7 @@
                 </div>
             </div>
 
+            <!-- ITEM 3: CERÂMICA FRIA -->
             <div class="project-card" data-category="ceramica">
                 <div class="project-img-placeholder">[ Peças Modeladas / Cerâmica Fria ]</div>
                 <div class="project-info">
@@ -506,6 +546,7 @@
                 </div>
             </div>
 
+            <!-- ITEM 4: MADEIRA -->
             <div class="project-card" data-category="madeira">
                 <div class="project-img-placeholder">[ Imagem do Processo ]</div>
                 <div class="project-info">
@@ -515,6 +556,7 @@
                 </div>
             </div>
 
+            <!-- ITEM 5: CERÂMICA FRIA -->
             <div class="project-card" data-category="ceramica">
                 <div class="project-img-placeholder">[ Detalhes da Modelagem ]</div>
                 <div class="project-info">
@@ -527,26 +569,40 @@
         </div>
     </section>
 
+    <!-- CONTATO E REDES SOCIAIS -->
     <section id="contato" class="contact-section">
         <h2 class="section-title">Solicite um Diagnóstico ou Peça Autoral</h2>
         <div class="contact-box">
             <p>Atendimento para projetos de conservação/restauro e encomendas em cerâmica fria para Ouro Preto, Região dos Inconfidentes e Belo Horizonte.</p>
             
-            <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="whatsapp-btn">
-                <svg class="whatsapp-icon" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-                Falar pelo WhatsApp
-            </a>
+            <div class="social-buttons">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="social-btn whatsapp-btn">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    Falar pelo WhatsApp
+                </a>
+
+                <!-- Instagram de Cerâmicas (Substitua o @SEU_USUARIO pelo link do perfil dela) -->
+                <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="social-btn instagram-btn">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram Cerâmicas
+                </a>
+            </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Mikhaely Aparecida — Conservação & Restauro. Ouro Preto / MG.</p>
     </footer>
 
+    <!-- JAVASCRIPT: SCROLLSPY + FILTRO DE ABAS -->
     <script>
-        // 1. SCROLLSPY (Destaca o menu conforme o scroll)
+        // 1. SCROLLSPY
         const sections = document.querySelectorAll('section, header');
         const navLinks = document.querySelectorAll('.nav-link');
 
@@ -554,7 +610,6 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (pageYOffset >= (sectionTop - 150)) {
                     current = section.getAttribute('id');
                 }
@@ -570,12 +625,10 @@
 
         // 2. FILTRO DE ABAS DO PORTFÓLIO
         function filterPortfolio(category) {
-            // Atualizar botão ativo
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filtrar cards
             const cards = document.querySelectorAll('.project-card');
             cards.forEach(card => {
                 if (category === 'todos' || card.getAttribute('data-category') === category) {
