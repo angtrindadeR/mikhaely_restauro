@@ -3,221 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mikhaely Aparecida — Conservação, Restauro, Fotogrametria e Fabricação Digital.">
     <title>Mikhaely Aparecida — Conservação & Restauro</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --off-white: #FAF8F5;
             --branco-puro: #FFFFFF;
             --azul-marinho: #162238;
+            --azul-profundo: #0E1624;
             --verde-oliva: #556B2F;
             --verde-oliva-hover: #435424;
             --ocre-dourado: #C5A059;
             --terracota: #B85B35;
             --texto-corpo: #333333;
             --cinza-suave: #EAE6DF;
+            --ease: cubic-bezier(.22, 1, .36, 1);
         }
 
-        html { scroll-behavior: smooth; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--off-white);
+            background: var(--off-white);
             color: var(--texto-corpo);
             line-height: 1.7;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .brand-logo { font-family: 'Cinzel', serif; }
+        body.modal-open {
+            overflow: hidden;
+        }
 
-        /* 1. HEADER SOFISTICADO */
+        h1, h2, h3, h4, .brand-logo {
+            font-family: 'Cinzel', serif;
+        }
+
+        ::selection {
+            background: var(--ocre-dourado);
+            color: var(--azul-marinho);
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
         header {
-            background-color: var(--azul-marinho);
-            color: var(--off-white);
-            padding: 1.2rem 8%;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+            padding: 1.25rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, padding 0.5s ease, box-shadow 0.5s ease;
+            color: var(--off-white);
+            background: rgba(22, 34, 56, 0);
+            border-bottom: 1px solid rgba(197, 160, 89, 0);
+            transition:
+                background .55s ease,
+                backdrop-filter .55s ease,
+                padding .55s var(--ease),
+                border-color .55s ease,
+                box-shadow .55s ease;
         }
 
         header.scrolled {
-            background: rgba(22, 34, 56, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            padding-top: 0.8rem;
-            padding-bottom: 0.8rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,.15);
+            padding-top: .78rem;
+            padding-bottom: .78rem;
+            background: rgba(22, 34, 56, .86);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom-color: rgba(197, 160, 89, .22);
+            box-shadow: 0 10px 35px rgba(8, 14, 25, .16);
         }
 
         .brand-logo {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
             letter-spacing: 1px;
             color: var(--off-white);
+            line-height: 1.15;
+            text-decoration: none;
         }
 
         .brand-logo span {
             color: var(--ocre-dourado);
-            font-size: 0.8rem;
+            font-size: .68rem;
             display: block;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-top: .35rem;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
         }
 
         nav a {
+            position: relative;
             color: var(--off-white);
             text-decoration: none;
-            margin-left: 1.8rem;
-            font-size: 0.88rem;
+            font-size: .82rem;
             font-weight: 400;
-            transition: all 0.3s ease;
-            padding-bottom: 4px;
-            border-bottom: 2px solid transparent;
+            padding: .45rem 0;
+            opacity: .92;
+            transition: color .3s ease, opacity .3s ease;
         }
 
-        nav a:hover, nav a.active {
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--ocre-dourado);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .45s var(--ease);
+        }
+
+        nav a:hover,
+        nav a.active {
             color: var(--ocre-dourado);
-            border-bottom: 2px solid var(--ocre-dourado);
+            opacity: 1;
         }
 
-        /* 2. HERO CINEMATOGRÁFICO */
+        nav a:hover::after,
+        nav a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
         .hero {
-            background-color: var(--azul-marinho);
-            color: var(--off-white);
-            padding: 6.5rem 8% 4rem 8%;
-            text-align: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            min-height: 100vh;
+            position: relative;
+            isolation: isolate;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 35%, rgba(197,160,89,.08), transparent 34%),
+                var(--azul-marinho);
+            color: var(--off-white);
+            padding: 9rem 8% 7rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(197,160,89,.28);
         }
 
-        .hero h1,
-        .hero .tagline,
-        .hero > p:not(.tagline),
-        .hero .hero-buttons,
-        .hero .scroll-indicator {
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 8%;
+            border: 1px solid rgba(197,160,89,.08);
+            pointer-events: none;
+            animation: frameReveal 1.8s var(--ease) both;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            right: -280px;
+            top: 15%;
+            border: 1px solid rgba(197,160,89,.08);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 50px rgba(197,160,89,.025),
+                0 0 0 100px rgba(197,160,89,.018);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 980px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: .7rem;
+            color: var(--ocre-dourado);
+            font-size: .67rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: heroReveal .9s var(--ease) .05s forwards;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: var(--ocre-dourado);
+            opacity: .65;
+        }
+
+        .hero h1 {
+            max-width: 1100px;
+            margin: 0 auto 1.2rem;
+            color: var(--off-white);
+            font-size: clamp(2.25rem, 5vw, 4.6rem);
+            line-height: 1.05;
+            letter-spacing: -.035em;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroReveal 1.05s var(--ease) .15s forwards;
+        }
+
+        .tagline {
+            color: var(--ocre-dourado);
+            font-size: clamp(.95rem, 1.6vw, 1.2rem);
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(25px);
-            animation: heroReveal 1s cubic-bezier(.22,1,.36,1) forwards;
+            animation: heroReveal .9s var(--ease) .3s forwards;
         }
 
-        .hero h1 { animation-delay: .15s; font-size: 2.5rem; margin-bottom: 1rem; color: var(--off-white); font-weight: 700; }
-        .hero .tagline { animation-delay: .3s; font-style: italic; color: var(--ocre-dourado); font-size: 1.25rem; margin-bottom: 1.5rem; font-weight: 500; }
-        .hero > p:not(.tagline) { animation-delay: .45s; font-size: 1.05rem; max-width: 720px; margin: 0 auto 2rem auto; color: #D1D5DB; font-weight: 300; }
-        .hero .hero-buttons { animation-delay: .6s; }
-        .hero .scroll-indicator { animation-delay: .75s; }
-
-        @keyframes heroReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-description {
+            max-width: 720px;
+            margin: 0 auto;
+            color: #D1D5DB;
+            font-size: .98rem;
+            font-weight: 300;
+            line-height: 1.85;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroReveal .9s var(--ease) .45s forwards;
         }
 
-        /* 3. INDICADOR DE SCROLL */
-        .scroll-indicator {
-            margin-top: 3.5rem;
+        .hero-buttons {
+            margin-top: 2rem;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: .6rem;
-            color: rgba(250,248,245,.6);
-            font-size: .65rem;
-            letter-spacing: 2px;
-            font-weight: 500;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: .8rem;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroReveal .9s var(--ease) .6s forwards;
         }
 
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: var(--ocre-dourado);
-            animation: scrollPulse 1.8s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% {
-                transform: scaleY(.4);
-                transform-origin: top;
-                opacity: .4;
-            }
-            50% {
-                transform: scaleY(1);
-                transform-origin: top;
-                opacity: 1;
-            }
-        }
-
-        /* BOTÕES & SETA MICRO-INTERAÇÃO */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.85rem 2rem;
-            border-radius: 4px;
+            gap: .55rem;
+            min-height: 48px;
+            padding: .78rem 1.65rem;
+            border-radius: 3px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            margin: 0.3rem;
+            font-size: .82rem;
+            letter-spacing: .1px;
+            transition:
+                transform .45s var(--ease),
+                background-color .35s ease,
+                color .35s ease,
+                border-color .35s ease,
+                box-shadow .45s ease;
             cursor: pointer;
-            position: relative;
         }
 
-        .btn-arrow {
-            display: inline-block;
-            margin-left: 0.5rem;
-            transition: transform 0.35s ease;
+        .btn::after {
+            content: '↗';
+            font-size: .95rem;
+            transition: transform .4s var(--ease);
         }
 
-        .btn:hover .btn-arrow {
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn:hover::after {
             transform: translate(3px, -3px);
         }
 
         .btn-primary {
-            background-color: var(--verde-oliva);
+            background: var(--verde-oliva);
             color: white;
-            border: none;
+            border: 1px solid var(--verde-oliva);
+            box-shadow: 0 8px 25px rgba(85,107,47,.18);
         }
 
         .btn-primary:hover {
-            background-color: var(--verde-oliva-hover);
-            transform: translateY(-2px);
+            background: var(--verde-oliva-hover);
+            border-color: var(--verde-oliva-hover);
+            box-shadow: 0 14px 35px rgba(85,107,47,.25);
         }
 
         .btn-secondary {
-            border: 1px solid var(--ocre-dourado);
+            border: 1px solid rgba(197,160,89,.8);
             color: var(--ocre-dourado);
-            background-color: transparent;
+            background: transparent;
         }
 
         .btn-secondary:hover {
-            background-color: var(--ocre-dourado);
+            background: var(--ocre-dourado);
             color: var(--azul-marinho);
-            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(197,160,89,.16);
         }
 
-        section { padding: 5.5rem 8%; }
+        .scroll-indicator {
+            position: absolute;
+            z-index: 3;
+            left: 50%;
+            bottom: 1.6rem;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .45rem;
+            color: rgba(250,248,245,.52);
+            font-size: .58rem;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.2s forwards;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 42px;
+            background: var(--ocre-dourado);
+            transform-origin: top;
+            animation: scrollPulse 1.8s ease-in-out 1.5s infinite;
+        }
+
+        /* =========================================================
+           GENERAL SECTIONS
+        ========================================================= */
+
+        section {
+            padding: 6.5rem 8%;
+            position: relative;
+        }
+
+        .section-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: clamp(1.65rem, 3vw, 2.35rem);
+            line-height: 1.2;
             color: var(--azul-marinho);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             position: relative;
+            letter-spacing: -.025em;
         }
 
         .section-title::after {
@@ -225,94 +391,137 @@
             display: block;
             width: 45px;
             height: 2px;
-            background-color: var(--ocre-dourado);
-            margin: 0.6rem auto 0 auto;
+            background: var(--ocre-dourado);
+            margin: .8rem auto 0;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .8s var(--ease);
         }
 
-        /* 12. EFEITOS DE REVELAÇÃO GLOBAL (SCROLL REVEAL) */
+        .section-title.visible::after {
+            transform: scaleX(1);
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(35px);
-            transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+            transition:
+                opacity .85s ease,
+                transform .9s var(--ease);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .reveal-left {
             opacity: 0;
             transform: translateX(-50px);
-            transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+            transition:
+                opacity .9s ease,
+                transform 1s var(--ease);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .reveal-right {
             opacity: 0;
             transform: translateX(50px);
-            transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+            transition:
+                opacity .9s ease,
+                transform 1s var(--ease);
         }
 
-        .reveal.visible,
-        .reveal-left.visible,
         .reveal-right.visible {
             opacity: 1;
-            transform: translate(0, 0);
+            transform: translateX(0);
         }
 
-        #sobre { background-color: var(--off-white); }
+        /* =========================================================
+           SOBRE
+        ========================================================= */
+
+        #sobre {
+            background: var(--off-white);
+        }
 
         .about-container {
-            display: flex;
-            gap: 3.5rem;
+            display: grid;
+            grid-template-columns: 300px minmax(0, 650px);
+            gap: 5rem;
             align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
-        /* 5. MONOGRAMA MICRO-ANIMAÇÃO */
+        .monogram-wrap {
+            display: flex;
+            justify-content: center;
+        }
+
         .monogram-box {
-            width: 210px;
-            height: 210px;
+            width: 225px;
+            height: 225px;
             border: 2px solid var(--ocre-dourado);
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(circle, #FFFFFF 50%, #F5F2EA 100%);
-            box-shadow: 0 8px 25px rgba(22, 34, 56, 0.07);
+            background: radial-gradient(circle, #FFFFFF 48%, #F5F2EA 100%);
+            box-shadow: 0 12px 35px rgba(22,34,56,.07);
             position: relative;
             padding: 1.5rem;
-            transition: transform .7s cubic-bezier(.22,1,.36,1), box-shadow .7s ease;
-        }
-
-        .monogram-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(22, 34, 56, 0.12);
+            transition:
+                transform .8s var(--ease),
+                box-shadow .8s ease;
         }
 
         .monogram-box::before {
             content: '';
             position: absolute;
-            top: 7px; left: 7px; right: 7px; bottom: 7px;
+            inset: 8px;
             border: 1px dashed var(--ocre-dourado);
             border-radius: 50%;
-            opacity: 0.7;
+            opacity: .7;
+            transition: transform .8s var(--ease);
+        }
+
+        .monogram-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 22px 50px rgba(22,34,56,.12);
+        }
+
+        .monogram-box:hover::before {
+            transform: rotate(8deg);
         }
 
         .monogram-box .symbol {
+            position: relative;
+            z-index: 1;
             font-family: 'Cinzel', serif;
-            font-size: 3.2rem;
+            font-size: 3.3rem;
             font-weight: 700;
             color: var(--azul-marinho);
             line-height: 1;
         }
 
         .monogram-divider {
+            position: relative;
+            z-index: 1;
             width: 60px;
             height: 10px;
-            margin: 0.4rem 0;
+            margin: .4rem 0;
             fill: var(--ocre-dourado);
         }
 
         .monogram-box .subtext {
-            font-size: 0.65rem;
+            position: relative;
+            z-index: 1;
+            font-size: .62rem;
             letter-spacing: 2.5px;
             color: var(--verde-oliva);
             text-transform: uppercase;
@@ -321,61 +530,104 @@
         }
 
         .about-text {
-            flex: 1;
-            min-width: 300px;
             max-width: 650px;
         }
 
-        .about-text p { margin-bottom: 1.2rem; text-align: justify; color: #444; }
-
-        .credentials { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
-
-        .badge {
-            background-color: #EFECE6;
-            border-left: 3px solid var(--verde-oliva);
-            color: var(--azul-marinho);
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 0 4px 4px 0;
+        .about-text p {
+            margin-bottom: 1.2rem;
+            text-align: left;
+            color: #444;
+            font-size: .93rem;
         }
 
+        .about-text strong {
+            color: var(--azul-marinho);
+            font-weight: 700;
+        }
+
+        .credentials {
+            display: flex;
+            gap: .7rem;
+            margin-top: 1.7rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            position: relative;
+            background: #EFECE6;
+            border-left: 3px solid var(--verde-oliva);
+            color: var(--azul-marinho);
+            padding: .55rem .9rem;
+            font-size: .75rem;
+            font-weight: 600;
+            border-radius: 0 3px 3px 0;
+            transition:
+                transform .4s var(--ease),
+                background .3s ease;
+        }
+
+        .badge:hover {
+            transform: translateX(4px);
+            background: #E8E4DC;
+        }
+
+        /* =========================================================
+           ÁREAS DE ATUAÇÃO
+        ========================================================= */
+
         #especialidades {
-            background-image: linear-gradient(rgba(250, 248, 245, 0.85), rgba(250, 248, 245, 0.85)), 
-                              url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=80');
-            background-attachment: fixed;
+            overflow: hidden;
+            background:
+                linear-gradient(rgba(250,248,245,.88), rgba(250,248,245,.91)),
+                url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=80');
             background-position: center;
             background-size: cover;
+            background-attachment: fixed;
+        }
+
+        #especialidades::before {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            left: -280px;
+            bottom: -250px;
+            border: 1px solid rgba(197,160,89,.2);
+            border-radius: 50%;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
         }
 
-        /* 6 & 7. CARDS DE ATUAÇÃO EDITORIAIS COM HOVER E NÚMEROS */
         .service-card {
-            background-color: rgba(255, 255, 255, 0.92);
-            padding: 2.5rem 1.8rem 2.2rem 1.8rem;
-            border-radius: 6px;
-            border: 1px solid var(--cinza-suave);
             position: relative;
             overflow: hidden;
-            transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s ease, opacity .8s ease;
+            min-height: 245px;
+            background: rgba(255,255,255,.91);
+            padding: 2rem 1.65rem 1.8rem;
+            border: 1px solid rgba(174,169,158,.42);
+            border-top: 3px solid var(--verde-oliva);
+            box-shadow: 0 8px 25px rgba(22,34,56,.035);
+            transition:
+                transform .65s var(--ease),
+                box-shadow .65s ease,
+                border-color .4s ease;
         }
 
-        .service-card-number {
+        .service-card::before {
+            content: attr(data-number);
             position: absolute;
-            top: 0.4rem;
-            right: 1rem;
+            right: -8px;
+            bottom: -25px;
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: rgba(22, 34, 56, 0.05);
+            font-size: 7rem;
             line-height: 1;
+            color: rgba(22,34,56,.035);
             pointer-events: none;
-            user-select: none;
+            transition: transform .8s var(--ease);
         }
 
         .service-card::after {
@@ -388,115 +640,222 @@
             background: var(--ocre-dourado);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform .6s cubic-bezier(.22,1,.36,1);
+            transition: transform .65s var(--ease);
+        }
+
+        .service-card:nth-child(2) {
+            transition-delay: .08s;
+        }
+
+        .service-card:nth-child(3) {
+            transition-delay: .16s;
+        }
+
+        .service-card:nth-child(4) {
+            transition-delay: .24s;
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(22, 34, 56, 0.12);
+            transform: translateY(-9px);
+            box-shadow: 0 20px 45px rgba(22,34,56,.11);
+            border-color: rgba(197,160,89,.55);
+        }
+
+        .service-card:hover::before {
+            transform: translate(-5px, -5px);
         }
 
         .service-card:hover::after {
             transform: scaleX(1);
         }
 
-        /* 13. STAGGER DELAY NOS CARDS DE SERVIÇO */
-        .service-card:nth-child(1) { transition-delay: .05s; }
-        .service-card:nth-child(2) { transition-delay: .15s; }
-        .service-card:nth-child(3) { transition-delay: .25s; }
-        .service-card:nth-child(4) { transition-delay: .35s; }
+        .service-number {
+            display: block;
+            color: var(--ocre-dourado);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 1.4rem;
+        }
 
-        .service-card h3 { color: var(--azul-marinho); margin-bottom: 0.8rem; font-size: 1.15rem; position: relative; z-index: 1; }
-        .service-card p { position: relative; z-index: 1; font-size: 0.9rem; color: #555; }
+        .service-card h3 {
+            position: relative;
+            z-index: 1;
+            color: var(--azul-marinho);
+            margin-bottom: .8rem;
+            font-size: 1.02rem;
+            line-height: 1.35;
+        }
 
-        #portfolio { background-color: var(--off-white); }
+        .service-card p {
+            position: relative;
+            z-index: 1;
+            color: #4e4e4e;
+            font-size: .84rem;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           PORTFÓLIO
+        ========================================================= */
+
+        #portfolio {
+            background: var(--off-white);
+        }
 
         .portfolio-tabs {
             display: flex;
             justify-content: center;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
+            gap: .55rem;
+            margin-bottom: 2.6rem;
             flex-wrap: wrap;
         }
 
         .tab-btn {
-            background-color: var(--branco-puro);
-            border: 1px solid var(--cinza-suave);
+            background: transparent;
+            border: 1px solid #DCD7CE;
             color: var(--azul-marinho);
-            padding: 0.6rem 1.4rem;
-            border-radius: 20px;
+            padding: .55rem 1.1rem;
+            border-radius: 30px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 500;
+            font-size: .75rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition:
+                background .35s ease,
+                color .35s ease,
+                border-color .35s ease,
+                transform .35s var(--ease);
         }
 
-        .tab-btn:hover, .tab-btn.active {
-            background-color: var(--verde-oliva);
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--ocre-dourado);
+        }
+
+        .tab-btn.active {
+            background: var(--verde-oliva);
             color: white;
             border-color: var(--verde-oliva);
+            box-shadow: 0 6px 18px rgba(85,107,47,.15);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 2rem;
-            position: relative;
         }
 
-        /* 8 & 9. CARDS DO PORTFÓLIO E ZOOM NA IMAGEM (1.04x) */
         .project-card {
+            position: relative;
             background: var(--branco-puro);
             border: 1px solid var(--cinza-suave);
-            border-radius: 6px;
             overflow: hidden;
-            transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease;
             cursor: pointer;
-            opacity: 1;
-            transform: scale(1);
+            transition:
+                opacity .45s ease,
+                transform .65s var(--ease),
+                box-shadow .65s ease,
+                border-color .4s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(22, 34, 56, 0.12);
-            border-color: var(--ocre-dourado);
+            transform: translateY(-7px);
+            box-shadow: 0 20px 50px rgba(22,34,56,.11);
+            border-color: rgba(197,160,89,.65);
         }
 
         .project-card.hide {
-            opacity: 0;
-            transform: scale(.94);
-            pointer-events: none;
             display: none;
+        }
+
+        .project-image-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 340px;
+            background: #ECE8E1;
+        }
+
+        .project-image-wrap::after {
+            content: 'VER PROJETO ↗';
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            padding: .5rem .7rem;
+            background: rgba(14,22,36,.86);
+            color: var(--off-white);
+            font-size: .62rem;
+            letter-spacing: 1.5px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition:
+                opacity .45s ease,
+                transform .55s var(--ease);
+        }
+
+        .project-card:hover .project-image-wrap::after {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card-img-cover {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid var(--cinza-suave);
-            background-color: #ECE8E1;
-            transition: transform .8s cubic-bezier(.22,1,.36,1);
+            transition: transform 1s var(--ease);
         }
 
         .project-card:hover .card-img-cover {
-            transform: scale(1.04);
+            transform: scale(1.045);
         }
 
-        .project-info { padding: 1.5rem; }
-        .project-tag { font-size: 0.72rem; color: var(--terracota); font-weight: 700; text-transform: uppercase; }
-        .project-info h3 { color: var(--azul-marinho); margin: 0.3rem 0 0.6rem 0; font-size: 1.1rem; }
-        .project-info p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
-        .card-action-link { font-size: 0.82rem; font-weight: 600; color: var(--verde-oliva); }
+        .project-info {
+            padding: 1.5rem 1.6rem 1.6rem;
+        }
 
-        /* 10. MODAL ANIMAÇÃO DE ENTRADA SUAVE */
+        .project-tag {
+            font-size: .66rem;
+            color: var(--terracota);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-info h3 {
+            color: var(--azul-marinho);
+            margin: .35rem 0 .55rem;
+            font-size: 1.08rem;
+        }
+
+        .project-info p {
+            font-size: .82rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+
+        .card-action-link {
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--verde-oliva);
+            transition: color .3s ease;
+        }
+
+        .project-card:hover .card-action-link {
+            color: var(--terracota);
+        }
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(14, 22, 36, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            inset: 0;
+            background: rgba(10,17,28,.78);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -504,7 +863,9 @@
             padding: 1.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
+            transition:
+                opacity .45s ease,
+                visibility .45s ease;
         }
 
         .modal-overlay.active {
@@ -513,17 +874,19 @@
         }
 
         .modal-container {
-            background-color: var(--off-white);
-            border-radius: 8px;
-            max-width: 850px;
+            background: var(--off-white);
+            max-width: 900px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 91vh;
             overflow-y: auto;
             position: relative;
             border: 1px solid var(--ocre-dourado);
+            box-shadow: 0 35px 100px rgba(0,0,0,.3);
             transform: translateY(30px) scale(.97);
             opacity: 0;
-            transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+            transition:
+                transform .65s var(--ease),
+                opacity .45s ease;
         }
 
         .modal-overlay.active .modal-container {
@@ -533,42 +896,74 @@
 
         .modal-close-btn {
             position: absolute;
-            top: 1rem; right: 1.2rem;
-            background: var(--branco-puro);
+            top: 1rem;
+            right: 1.2rem;
+            background: rgba(255,255,255,.94);
             border: 1px solid var(--cinza-suave);
             color: var(--azul-marinho);
-            width: 36px; height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 500;
             cursor: pointer;
             z-index: 10;
+            transition:
+                transform .4s var(--ease),
+                background .3s ease,
+                color .3s ease;
         }
 
-        .modal-content { padding: 2.5rem 2rem; }
-        .modal-header { margin-bottom: 1.8rem; border-bottom: 1px solid var(--cinza-suave); padding-bottom: 1rem; }
-        .modal-tag { color: var(--terracota); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
-        .modal-title { color: var(--azul-marinho); font-size: 1.8rem; }
+        .modal-close-btn:hover {
+            transform: rotate(90deg);
+            background: var(--azul-marinho);
+            color: white;
+        }
 
-        /* 11. ANIMAÇÃO DA GALERIA DO MODAL */
+        .modal-content {
+            padding: 2.7rem 2.3rem 2.2rem;
+        }
+
+        .modal-header {
+            margin-bottom: 1.7rem;
+            border-bottom: 1px solid var(--cinza-suave);
+            padding-bottom: 1.1rem;
+        }
+
+        .modal-tag {
+            color: var(--terracota);
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-title {
+            color: var(--azul-marinho);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            line-height: 1.25;
+            margin-top: .35rem;
+        }
+
         .gallery-main {
-            height: 380px;
-            background-color: #ECE8E1;
-            border-radius: 6px;
+            height: 430px;
+            background: #ECE8E1;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--cinza-suave);
-            margin-bottom: 0.8rem;
+            margin-bottom: .8rem;
         }
 
         .gallery-main img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background-color: #0E1624;
+            background: #0E1624;
             opacity: 1;
             transform: scale(1);
-            transition: opacity .35s ease, transform .5s cubic-bezier(.22,1,.36,1);
+            transition:
+                opacity .3s ease,
+                transform .5s var(--ease);
         }
 
         .gallery-main img.changing {
@@ -578,27 +973,38 @@
 
         .gallery-main-label {
             position: absolute;
-            top: 12px; left: 12px;
-            background-color: rgba(22, 34, 56, 0.85);
+            top: 12px;
+            left: 12px;
+            background: rgba(22,34,56,.88);
             color: var(--off-white);
-            font-size: 0.75rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 3px;
+            font-size: .65rem;
+            padding: .35rem .7rem;
+            border-radius: 2px;
             font-weight: 600;
             z-index: 2;
         }
 
-        .gallery-thumbs { display: flex; gap: 0.8rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .gallery-thumbs {
+            display: flex;
+            gap: .65rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            padding: .15rem .1rem .55rem;
+            scrollbar-width: thin;
+        }
 
         .thumb-item {
             flex: 0 0 90px;
             height: 65px;
-            background-color: #E2DDD4;
-            border-radius: 4px;
+            background: #E2DDD4;
             border: 2px solid transparent;
             cursor: pointer;
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition:
+                border-color .3s ease,
+                transform .4s var(--ease),
+                opacity .3s ease;
+            opacity: .72;
         }
 
         .thumb-item img {
@@ -607,9 +1013,15 @@
             object-fit: cover;
         }
 
-        .thumb-item:hover, .thumb-item.active {
+        .thumb-item:hover {
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+
+        .thumb-item.active {
             border-color: var(--verde-oliva);
-            transform: scale(1.03);
+            transform: translateY(-2px);
+            opacity: 1;
         }
 
         .modal-body-grid {
@@ -620,461 +1032,632 @@
         }
 
         .ficha-tecnica {
-            background-color: var(--branco-puro);
+            background: var(--branco-puro);
             padding: 1.5rem;
-            border-radius: 6px;
             border: 1px solid var(--cinza-suave);
             border-left: 3px solid var(--ocre-dourado);
         }
 
-        .ficha-tecnica h4 { color: var(--azul-marinho); margin-bottom: 1rem; border-bottom: 1px solid var(--cinza-suave); padding-bottom: 0.4rem; }
-        .ficha-item { margin-bottom: 0.7rem; font-size: 0.88rem; }
-        .ficha-item strong { color: var(--azul-marinho); display: block; font-size: 0.78rem; text-transform: uppercase; }
-
-        .modal-description p { font-size: 0.95rem; color: #444; margin-bottom: 1rem; text-align: justify; }
-        .modal-footer { border-top: 1px solid var(--cinza-suave); padding-top: 1.5rem; text-align: center; }
-
-        .contact-section { background-color: var(--azul-marinho); color: var(--off-white); text-align: center; }
-        .contact-section .section-title { color: var(--off-white); }
-        .contact-box p { color: #D1D5DB; }
-
-        .social-buttons { display: flex; justify-content: center; gap: 1.2rem; margin-top: 2rem; flex-wrap: wrap; }
-        .social-btn {
-            font-size: 0.95rem; padding: 0.9rem 1.8rem; border-radius: 30px;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
-            font-weight: 600; color: white;
-            transition: transform 0.3s ease;
+        .ficha-tecnica h4,
+        .modal-description h4 {
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--cinza-suave);
+            padding-bottom: .45rem;
+            font-size: .92rem;
         }
-        .social-btn:hover { transform: translateY(-2px); }
-        .whatsapp-btn { background-color: #25D366; }
-        .instagram-btn { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-        footer { background-color: #0E1624; color: #888; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+        .ficha-item {
+            margin-bottom: .75rem;
+            font-size: .8rem;
+        }
 
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; text-align: center; }
-            nav a { margin: 0 0.4rem; font-size: 0.85rem; }
-            .hero h1 { font-size: 1.8rem; }
-            .modal-body-grid { grid-template-columns: 1fr; }
-            .gallery-main { height: 250px; }
+        .ficha-item strong {
+            color: var(--azul-marinho);
+            display: block;
+            font-size: .68rem;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: .15rem;
+        }
+
+        .modal-description p {
+            font-size: .84rem;
+            color: #444;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--cinza-suave);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        /* =========================================================
+           CONTATO / FOOTER
+        ========================================================= */
+
+        .contact-section {
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 50% 100%, rgba(197,160,89,.08), transparent 40%),
+                var(--azul-marinho);
+            color: var(--off-white);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            border: 1px solid rgba(197,160,89,.08);
+            border-radius: 50%;
+            top: -280px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-section .section-title {
+            color: var(--off-white);
+            margin-bottom: 1.3rem;
+        }
+
+        .contact-section .section-title::after {
+            margin-top: .7rem;
+        }
+
+        .contact-box {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .contact-box p {
+            color: #D1D5DB;
+            font-size: .88rem;
+            font-weight: 300;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: .8rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            min-height: 46px;
+            padding: .75rem 1.3rem;
+            border: 1px solid rgba(255,255,255,.12);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: .76rem;
+            font-weight: 600;
+            color: white;
+            transition:
+                transform .45s var(--ease),
+                box-shadow .45s ease,
+                filter .3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 35px rgba(0,0,0,.2);
+            filter: brightness(1.06);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            border-color: #25D366;
+            color: #FFFFFF;
+        }
+
+        .instagram-btn {
+            background: transparent;
+            border-color: var(--ocre-dourado);
+            color: var(--ocre-dourado);
+        }
+
+        .email-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        footer {
+            background: var(--azul-profundo);
+            color: rgba(250, 248, 245, 0.6);
+            text-align: center;
+            padding: 1.8rem 8%;
+            font-size: 0.75rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.15);
+        }
+
+        /* KEYFRAMES */
+        @keyframes frameReveal {
+            from { opacity: 0; transform: scale(.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes scrollPulse {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            50.1% { transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            .about-text p {
+                text-align: center;
+            }
+            .credentials {
+                justify-content: center;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-body-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1rem 5%;
+            }
+            nav {
+                gap: 1rem;
+            }
+            nav a {
+                font-size: 0.75rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-main {
+                height: 280px;
+            }
+            .modal-content {
+                padding: 1.5rem 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
-    <header>
-        <div class="brand-logo">
-            MIKHAELY APARECIDA
+    <!-- HEADER -->
+    <header id="header">
+        <a href="#" class="brand-logo">
+            Mikhaely Aparecida
             <span>CONSERVAÇÃO & RESTAURO</span>
-        </div>
-        <nav id="navbar">
-            <a href="#sobre" class="nav-link active">Sobre</a>
-            <a href="#especialidades" class="nav-link">Atuação</a>
-            <a href="#portfolio" class="nav-link">Portfólio</a>
-            <a href="#contato" class="nav-link">Contato</a>
+        </a>
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#portfolio">Portfólio</a>
+            <a href="#contato">Contato</a>
         </nav>
     </header>
 
-    <!-- HERO / ABERTURA CINEMATOGRÁFICA -->
-    <section class="hero" id="inicio">
-        <h1>Rigor técnico na preservação do patrimônio</h1>
-        <p class="tagline">"Preservando a história, eternizando memórias."</p>
-        <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais, modelagem em cerâmica e documentação digital.</p>
-        <div class="hero-buttons" style="margin-top: 1.8rem;">
-            <a href="#contato" class="btn btn-primary">Solicitar Avaliação <span class="btn-arrow">↗</span></a>
-            <a href="#portfolio" class="btn btn-secondary">Ver Projetos <span class="btn-arrow">↗</span></a>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Patrimônio & Tecnologia</div>
+            <h1>Preservando a História, Esculpindo o Futuro</h1>
+            <p class="tagline">Conservação, Restauração, Fotogrametria 3D e Fabricação Digital</p>
+            <p class="hero-description">
+                Unindo técnicas tradicionais de restauração de acervos a tecnologias avançadas de digitalização tridimensional e manufatura aditiva para salvaguarda do patrimônio cultural.
+            </p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn btn-primary">Ver Portfólio</a>
+                <a href="#contato" class="btn btn-secondary">Solicitar Orçamento</a>
+            </div>
         </div>
-        
-        <!-- INDICADOR DE SCROLL -->
         <div class="scroll-indicator">
-            <span>ROLE PARA EXPLORAR</span>
+            <span>Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- SOBRE MIM -->
+    <!-- SOBRE -->
     <section id="sobre">
-        <h2 class="section-title reveal">Sobre a Conservadora</h2>
-        <div class="about-container">
-            <div class="monogram-box reveal-left">
-                <div class="symbol">MA</div>
-                <svg class="monogram-divider" viewBox="0 0 100 12">
-                    <path d="M0,6 L42,6 L50,1 L58,6 L100,6 M50,11 L44,6 L50,1 L56,6 Z" />
-                </svg>
-                <div class="subtext">Conservação & Restauro</div>
-            </div>
-
-            <div class="about-text reveal-right">
-                <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora formada pelo <strong>IFMG (Campus Ouro Preto)</strong> e especialista em Bens Móveis pela <strong>Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
-                <p>Minha atuação une o rigor técnico da conservação tradicional a abordagens inovadoras — como o uso de fotogrametria aplicada ao patrimônio edificado e tecnologias de fabricação digital.</p>
-                <p>Trabalho com foco na preservação da memória física e cultural, pautando meus projetos na ética da reversibilidade, na intervenção mínima e na sensibilidade artística.</p>
-                
-                <div class="credentials">
-                    <div class="badge">IFMG Ouro Preto — Conservação & Restauro</div>
-                    <div class="badge">FAOP — Bens Móveis</div>
-                    <div class="badge">Fabricação Digital & Fotogrametria</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ÁREAS DE ATUAÇÃO EDITORIAL -->
-    <section id="especialidades">
-        <h2 class="section-title reveal">Áreas de Atuação</h2>
-        <div class="services-grid">
-            <div class="service-card reveal">
-                <div class="service-card-number">01</div>
-                <h3>Fotogrametria Digital</h3>
-                <p>Documentação e mapeamento tridimensional de precisão para acervos e estruturas arquitetônicas.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-card-number">02</div>
-                <h3>Restauro em Madeira</h3>
-                <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-card-number">03</div>
-                <h3>Cerâmica Fria & Modelagem</h3>
-                <p>Criação autoral e artesanal de peças utilitárias e decorativas em cerâmica fria.</p>
-            </div>
-            <div class="service-card reveal">
-                <div class="service-card-number">04</div>
-                <h3>Documentos & Livros Raros</h3>
-                <p>Higienização, conservação preventiva de acervos bibliográficos e restauro de papel.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFÓLIO DE TRABALHOS -->
-    <section id="portfolio">
-        <h2 class="section-title reveal">Portfólio de Trabalhos</h2>
-        
-        <div class="portfolio-tabs reveal">
-            <button class="tab-btn active" onclick="filterPortfolio('todos', event)">Todos</button>
-            <button class="tab-btn" onclick="filterPortfolio('fotogrametria', event)">Fotogrametria</button>
-            <button class="tab-btn" onclick="filterPortfolio('madeira', event)">Restauro em Madeira</button>
-            <button class="tab-btn" onclick="filterPortfolio('ceramica', event)">Cerâmica Fria</button>
-            <button class="tab-btn" onclick="filterPortfolio('livros', event)">Livros & Documentos</button>
-        </div>
-
-        <div class="portfolio-grid">
-            
-            <!-- CARD FOTOGRAMETRIA -->
-            <div class="project-card reveal" data-category="fotogrametria" onclick="openModal('fotogrametria')">
-                <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.34 (2).jpeg" alt="Fotogrametria" class="card-img-cover">
-                <div class="project-info">
-                    <span class="project-tag">Fotogrametria</span>
-                    <h3>Levantamento Tridimensional</h3>
-                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e documentação digital.</p>
-                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
-                </div>
-            </div>
-
-            <!-- CARD RESTAURO MADEIRA -->
-            <div class="project-card reveal" data-category="madeira" onclick="openModal('madeira')">
-                <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.29.jpeg" alt="Restauro em Madeira" class="card-img-cover">
-                <div class="project-info">
-                    <span class="project-tag">Restauro em Madeira</span>
-                    <h3>Placa de República Histórica</h3>
-                    <p>Tratamento contra cupins, consolidação do suporte de madeira e reintegração da pintura.</p>
-                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
-                </div>
-            </div>
-
-            <!-- CARD CERÂMICA FRIA -->
-            <div class="project-card reveal" data-category="ceramica" onclick="openModal('ceramica')">
-                <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.34 (1).jpeg" alt="Cerâmica Fria" class="card-img-cover">
-                <div class="project-info">
-                    <span class="project-tag">Cerâmica Fria</span>
-                    <h3>Incensários & Utilitários</h3>
-                    <p>Modelagem autoral e artesanal de porta-jóias, incensários e cinzeiros decorativos.</p>
-                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
-                </div>
-            </div>
-
-            <!-- CARD LIVROS ANTIGOS -->
-            <div class="project-card reveal" data-category="livros" onclick="openModal('livros')">
-                <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.30.jpeg" alt="Livros e Documentos" class="card-img-cover">
-                <div class="project-info">
-                    <span class="project-tag">Livros & Documentos</span>
-                    <h3>Restauro de Livros Raros</h3>
-                    <p>Higienização documental, consolidação de encadernação e enxerto em papel.</p>
-                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- MODAL / POP-UP -->
-    <div class="modal-overlay" id="projectModal" onclick="closeModalOnOverlay(event)">
-        <div class="modal-container">
-            <button class="modal-close-btn" onclick="closeModal()">&times;</button>
-            <div class="modal-content">
-                
-                <div class="modal-header">
-                    <span class="modal-tag" id="modalTag">Categoria</span>
-                    <h2 class="modal-title" id="modalTitle">Título do Projeto</h2>
-                </div>
-
-                <div class="modal-gallery">
-                    <div class="gallery-main" id="galleryMain">
-                        <span class="gallery-main-label" id="galleryLabel">Foto 1</span>
-                        <img id="galleryImg" src="" alt="Galeria">
+        <div class="section-inner">
+            <div class="about-container">
+                <div class="monogram-wrap reveal-left">
+                    <div class="monogram-box">
+                        <span class="symbol">MA</span>
+                        <svg class="monogram-divider" viewBox="0 0 60 10">
+                            <line x1="0" y1="5" x2="60" y2="5" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        <span class="subtext">Ateliê & Lab</span>
                     </div>
-                    <div class="gallery-thumbs" id="galleryThumbs"></div>
+                </div>
+                <div class="about-text reveal-right">
+                    <h2 class="section-title" style="text-align: left;">Mikhaely Aparecida</h2>
+                    <p>
+                        Especialista em <strong>Conservação e Restauração de Bens Movéis e Integrados</strong>, atua na interseção entre a ciência dos materiais e as novas mídias digitais.
+                    </p>
+                    <p>
+                        Seu trabalho abrange desde intervenções minuciosas de consolidação e higienização em peças históricas até a documentação de altíssima precisão através de <strong>fotogrametria 3D</strong> e reconstituição física com <strong>fabricação digital</strong>.
+                    </p>
+                    <div class="credentials">
+                        <span class="badge">Conservação-Restauração</span>
+                        <span class="badge">Fotogrametria 3D</span>
+                        <span class="badge">Modelagem & Impressão 3D</span>
+                        <span class="badge">Análise Diagnóstica</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPECIALIDADES -->
+    <section id="especialidades">
+        <div class="section-inner">
+            <h2 class="section-title reveal">Áreas de Atuação</h2>
+            <div class="services-grid">
+                <div class="service-card reveal" data-number="01">
+                    <span class="service-number">01 / CONSERVAÇÃO</span>
+                    <h3>Conservação Preventiva</h3>
+                    <p>Diagnóstico de acervos, controle ambiental, higienização especializada e acondicionamento para salvaguarda de coleções.</p>
+                </div>
+                <div class="service-card reveal" data-number="02">
+                    <span class="service-number">02 / RESTAURO</span>
+                    <h3>Restauração de Acervos</h3>
+                    <p>Intervenções éticas e reversíveis em bens esculpidos, pictóricos ou integrados, respeitando a pátina e a integridade histórica.</p>
+                </div>
+                <div class="service-card reveal" data-number="03">
+                    <span class="service-number">03 / DIGITAL</span>
+                    <h3>Fotogrametria 3D</h3>
+                    <p>Digitalização tridimensional de alta resolução para documentação métrica, acervos virtuais, monitoramento e ortofotos.</p>
+                </div>
+                <div class="service-card reveal" data-number="04">
+                    <span class="service-number">04 / FABRICAÇÃO</span>
+                    <h3>Fabricação Digital</h3>
+                    <p>Reconstituição volumétrica de lacunas, prototipagem de suportes sob medida e réplicas táticas por meio de impressão 3D.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio">
+        <div class="section-inner">
+            <h2 class="section-title reveal">Projetos em Destaque</h2>
+            
+            <div class="portfolio-tabs reveal">
+                <button class="tab-btn active" data-filter="all">Todos</button>
+                <button class="tab-btn" data-filter="restauro">Restauro</button>
+                <button class="tab-btn" data-filter="fotogrametria">Fotogrametria 3D</button>
+                <button class="tab-btn" data-filter="fabricacao">Fabricação Digital</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Projeto 1 -->
+                <div class="project-card reveal" data-category="restauro" data-project="1">
+                    <div class="project-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80" alt="Restauração de Escultura Sacra" class="card-img-cover">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Restauro & Conservação</span>
+                        <h3>Escultura Sacra Policromada (Séc. XVIII)</h3>
+                        <p>Consolidação estrutural, remoção de repinturas inadequadas e reintegração cromática por pontilhismo em imagem sacra de madeira.</p>
+                        <span class="card-action-link">Detalhes do Projeto →</span>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div class="project-card reveal" data-category="fotogrametria" data-project="2">
+                    <div class="project-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=800&q=80" alt="Fotogrametria de Fachada Histórica" class="card-img-cover">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Fotogrametria 3D</span>
+                        <h3>Mapeamento Métrico de Elemento Arquitetônico</h3>
+                        <p>Geração de nuvem de pontos densa e modelo fotorrealista 3D para documentação técnica de ornamento arquitetônico em pedra sabão.</p>
+                        <span class="card-action-link">Detalhes do Projeto →</span>
+                    </div>
+                </div>
+
+                <!-- Projeto 3 -->
+                <div class="project-card reveal" data-category="fabricacao" data-project="3">
+                    <div class="project-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Impressão 3D de Lacuna" class="card-img-cover">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Fabricação Digital</span>
+                        <h3>Reconstituição Anatômica por Manufatura Aditiva</h3>
+                        <p>Modelagem 3D e impressão em resina biocompatível para preenchimento de lacuna em suporte escultórico danificado.</p>
+                        <span class="card-action-link">Detalhes do Projeto →</span>
+                    </div>
+                </div>
+
+                <!-- Projeto 4 -->
+                <div class="project-card reveal" data-category="fotogrametria" data-project="4">
+                    <div class="project-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Digitalização de Acervo Cerâmico" class="card-img-cover">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Fotogrametria 3D</span>
+                        <h3>Acervo Arqueológico Cerâmico Virtual</h3>
+                        <p>Digitalização tridimensional de peças arqueológicas para acervo digital interativo de museu e preservação da memória visual.</p>
+                        <span class="card-action-link">Detalhes do Projeto →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE PROJETOS -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modal-close">&times;</button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-tag" id="modal-tag">Categoria</span>
+                    <h3 class="modal-title" id="modal-title">Título do Projeto</h3>
+                </div>
+
+                <div class="gallery-main">
+                    <span class="gallery-main-label" id="modal-label">Imagem Principal</span>
+                    <img id="modal-main-img" src="" alt="Projeto em Detalhes">
+                </div>
+
+                <div class="gallery-thumbs" id="modal-thumbs">
+                    <!-- Thumbnails inseridas via JS -->
                 </div>
 
                 <div class="modal-body-grid">
                     <div class="ficha-tecnica">
                         <h4>Ficha Técnica</h4>
-                        <div id="modalFicha"></div>
+                        <div class="ficha-item">
+                            <strong>Instituição / Cliente</strong>
+                            <span id="modal-client">-</span>
+                        </div>
+                        <div class="ficha-item">
+                            <strong>Técnica Aplicada</strong>
+                            <span id="modal-tech">-</span>
+                        </div>
+                        <div class="ficha-item">
+                            <strong>Ano de Execução</strong>
+                            <span id="modal-year">-</span>
+                        </div>
                     </div>
-
                     <div class="modal-description">
-                        <h4 style="color: var(--azul-marinho); font-size: 1rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--cinza-suave); padding-bottom: 0.4rem;">Relato da Intervenção</h4>
-                        <div id="modalDescriptionText"></div>
+                        <h4>Descrição do Processo</h4>
+                        <p id="modal-desc">Detalhamento técnico do projeto...</p>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <a id="modalWhatsappLink" href="#" target="_blank" class="btn btn-primary" style="background-color: #25D366;">
-                        Solicitar Orçamento para este Tipo de Trabalho <span class="btn-arrow">↗</span>
-                    </a>
+                    <a href="#contato" class="btn btn-primary" id="modal-contact-btn">Solicitar Projeto Semelhante</a>
                 </div>
-
             </div>
         </div>
     </div>
 
     <!-- CONTATO -->
-    <section id="contato" class="contact-section reveal">
-        <h2 class="section-title">Solicite um Diagnóstico</h2>
-        <div class="contact-box">
-            <p>Atendimento para projetos de conservação/restauro e encomendas em cerâmica fria para Ouro Preto e região.</p>
-            
+    <section id="contato" class="contact-section">
+        <div class="section-inner contact-box reveal">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p>Interessado em consultorias, serviços de restauração, digitalização 3D ou parcerias acadêmicas e institucionais? Envie uma mensagem.</p>
             <div class="social-buttons">
-                <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="social-btn whatsapp-btn">
-                    Falar pelo WhatsApp <span class="btn-arrow">↗</span>
-                </a>
-                <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="social-btn instagram-btn">
-                    Instagram Cerâmicas <span class="btn-arrow">↗</span>
-                </a>
+                <a href="https://wa.me/5500000000000" target="_blank" class="social-btn whatsapp-btn">WhatsApp</a>
+                <a href="https://instagram.com" target="_blank" class="social-btn instagram-btn">Instagram</a>
+                <a href="mailto:contato@mikhaely.com" class="social-btn email-btn">E-mail</a>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Mikhaely Aparecida — Conservação & Restauro. Ouro Preto / MG.</p>
+        <p>&copy; 2026 Mikhaely Aparecida — Conservação, Restauro & Fabricação Digital. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // HEADER SCROLLED EFFECT
-        window.addEventListener('scroll', () => {
-            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 40);
-        });
-
-        // REVEAL OBSERVER (INTERSECTION OBSERVER GLOBAL)
-        const revealObserver = new IntersectionObserver(
-            entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.15 }
-        );
-
-        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(element => {
-            revealObserver.observe(element);
-        });
-
-        // DADOS DOS PROJETOS
-        const folder = 'Imagnes portifólio/';
-
+        // Data dos projetos para o modal
         const projectsData = {
-            'fotogrametria': {
-                tag: 'Fotogrametria & Documentação',
-                title: 'Levantamento Tridimensional de Precisão',
+            1: {
+                tag: "Restauro & Conservação",
+                title: "Escultura Sacra Policromada (Séc. XVIII)",
+                client: "Acervo Particular / Museu Histórico",
+                tech: "Remoção de repinturas, consolidação e pontilhismo",
+                year: "2023",
+                desc: "Intervenção completa de restauração em escultura de madeira policromada. Foi realizada prospecção estratigráfica, limpeza mecânica e química, consolidação do suporte lenhoso atacado por xilófagos e reintegração pictórica ética com tinta a verniz reversível.",
                 images: [
-                    { label: 'Foto Principal / Nuvem 3D', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.34 (2).jpeg' },
-                    { label: 'Detalhamento do Mapeamento', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.35 (1).jpeg' }
-                ],
-                ficha: {
-                    'Objeto': 'Estrutura Arquitetônica / Peça Tridimensional',
-                    'Metodologia': 'Fotogrametria Digital Terrestre (SfM)',
-                    'Tecnologia': 'Modelagem por nuvem de pontos densa',
-                    'Finalidade': 'Diagnóstico de conservação e salvaguarda digital'
-                },
-                description: `
-                    <p>A fotogrametria digital é uma técnica não invasiva essencial para o diagnóstico e a conservação preventiva do patrimônio.</p>
-                    <p>Através da captação de fotografias sobrepostas sob ângulos calculados, gera-se um modelo tridimensional milimétrico que identifica patologias sem contato físico.</p>
-                `,
-                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20saber%20mais%20sobre%20o%20serviço%20de%20Fotogrametria%20Digital.'
+                    { url: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80", label: "Estado Final Reintegrado" },
+                    { url: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?auto=format&fit=crop&w=1200&q=80", label: "Durante o Processo" },
+                    { url: "https://images.unsplash.com/photo-1582561817343-835169f5df2d?auto=format&fit=crop&w=1200&q=80", label: "Detalhe da Policromia" }
+                ]
             },
-            'madeira': {
-                tag: 'Restauro em Madeira',
-                title: 'Conservação e Restauro de Placa Histórica',
+            2: {
+                tag: "Fotogrametria 3D",
+                title: "Mapeamento Métrico de Elemento Arquitetônico",
+                client: "Patrimônio Arquitetônico",
+                tech: "Fotogrametria Close-Range / Nuvem de Pontos",
+                year: "2024",
+                desc: "Captura fotográfica de alta precisão para geração de modelo tridimensional métrico. Utilizado para diagnosticar fissuras, perda de massa e planejar futuras conservações sem necessidade de contato físico direto.",
                 images: [
-                    { label: 'Visão Geral (Foto Principal)', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.29.jpeg' },
-                    { label: 'Registro de Detalhe 1', url: folder + 'WhatsApp Imagem 2026-09-07 em 14.40.28.jpeg' },
-                    { label: 'Registro de Detalhe 2', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.25.jpeg' },
-                    { label: 'Tratamento do Suporte', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.24.jpeg' },
-                    { label: 'Etapa de Reintegração', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.26.jpeg' }
-                ],
-                ficha: {
-                    'Objeto': 'Placa entalhada de República Estudantil',
-                    'Material': 'Madeira maciça com camada pictórica',
-                    'Intervenção': 'Descupinização, consolidação e reestruturação',
-                    'Critério Ético': 'Intervenção mínima e reversibilidade'
-                },
-                description: `
-                    <p>O projeto contemplou o diagnóstico do estado de conservação da peça, atingida por cupins e perda estrutural.</p>
-                    <p>Foi realizada imunização química, consolidação das fibras e nivelamento pictórico preservando a pátina original.</p>
-                `,
-                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20um%20orçamento%20para%20Restauro%20em%20Madeira.'
+                    { url: "https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=1200&q=80", label: "Malha 3D Texturizada" },
+                    { url: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80", label: "Ortoimagem de Fachada" }
+                ]
             },
-            'ceramica': {
-                tag: 'Cerâmica Fria & Modelagem',
-                title: 'Coleção Autoral de Utilitários em Cerâmica Fria',
+            3: {
+                tag: "Fabricação Digital",
+                title: "Reconstituição Anatômica por Manufatura Aditiva",
+                client: "Projeto Institucional",
+                tech: "Modelagem 3D (ZBrush) e Impressão MSLA",
+                year: "2023",
+                desc: "Digitalização do suporte restante, espelhamento digital do membro ausente e fabricação da prancha de preenchimento em resina. A peça impressa serve de apoio reversível para reestruturação visual do bem sem danificar o original.",
                 images: [
-                    { label: 'Peça Principal', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.34 (1).jpeg' },
-                    { label: 'Vista em Detalhes 1', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.33.jpeg' },
-                    { label: 'Vista em Detalhes 2', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.34 (2).jpeg' },
-                    { label: 'Modelagem Autoral', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.34.jpeg' }
-                ],
-                ficha: {
-                    'Produtos': 'Porta-jóias, incensários e cinzeiros decorativos',
-                    'Técnica': 'Modelagem manual em cerâmica fria',
-                    'Acabamento': 'Pintura autoral e selagem impermeável',
-                    'Diferencial': 'Peças exclusivas moldadas 100% à mão'
-                },
-                description: `
-                    <p>Criação autoral de utilitários feitos à mão, unindo o cuidado artesanal do restauro com o design contemporâneo.</p>
-                    <p>As peças recebem verniz impermeabilizante de alta resistência, garantindo proteção para uso diário.</p>
-                `,
-                whatsappMsg: 'Olá,%20Mikhaely!%20Tenho%20interesse%20nas%20suas%20peças%20em%20Cerâmica%20Fria.'
+                    { url: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80", label: "Encaixe da Peça 3D" },
+                    { url: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80", label: "Impressão Aditiva" }
+                ]
             },
-            'livros': {
-                tag: 'Livros & Documentos Raros',
-                title: 'Conservação e Restauro de Livros e Papel',
+            4: {
+                tag: "Fotogrametria 3D",
+                title: "Acervo Arqueológico Cerâmico Virtual",
+                client: "Reserva Técnica Arqueológica",
+                tech: "Digitalização 3D / Difusão Cultural",
+                year: "2024",
+                desc: "Criação de réplicas digitais em alta definição para disponibilização em acervos virtuais de acesso público. O modelo permite inspeções em 360° por pesquisadores do mundo inteiro.",
                 images: [
-                    { label: 'Foto Principal', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.30.jpeg' },
-                    { label: 'Higienização e Suporte', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.31.jpeg' },
-                    { label: 'Processo de Restauro 1', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.32 (1).jpeg' },
-                    { label: 'Processo de Restauro 2', url: folder + 'Imagem do WhatsApp 2026-09-07 em 14.40.32.jpeg' }
-                ],
-                ficha: {
-                    'Objeto': 'Acervo bibliográfico e documentos em papel',
-                    'Materiais': 'Papel japonês e adesivos celulósicos',
-                    'Intervenção': 'Higienização mecânica e enxertos',
-                    'Objetivo': 'Estabilização e restauração do manuseio'
-                },
-                description: `
-                    <p>Higienização folha a folha e restauração de áreas fragilizadas com enxertos milimétricos de papel japonês.</p>
-                    <p>A encadernação passa por consolidação das costuras originais, assegurando a durabilidade da obra.</p>
-                `,
-                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20um%20orçamento%20para%20Restauro%20de%20Livros.'
+                    { url: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=80", label: "Render 3D Interativo" },
+                    { url: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1200&q=80", label: "Visualização de Textura" }
+                ]
             }
         };
 
-        let currentProjectImages = [];
+        // Scroll Effect no Header
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer para Animações Reveal
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .section-title').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Filtro do Portfólio
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+        // Lógica do Modal
+        const modal = document.getElementById('project-modal');
+        const modalCloseBtn = document.getElementById('modal-close');
+        const modalMainImg = document.getElementById('modal-main-img');
+        const modalLabel = document.getElementById('modal-label');
+        const modalThumbs = document.getElementById('modal-thumbs');
 
         function openModal(projectId) {
             const data = projectsData[projectId];
             if (!data) return;
 
-            document.getElementById('modalTag').innerText = data.tag;
-            document.getElementById('modalTitle').innerText = data.title;
-            
-            const fichaContainer = document.getElementById('modalFicha');
-            fichaContainer.innerHTML = '';
-            for (const [key, value] of Object.entries(data.ficha)) {
-                fichaContainer.innerHTML += `
-                    <div class="ficha-item">
-                        <strong>${key}</strong>
-                        <span>${value}</span>
-                    </div>
-                `;
+            document.getElementById('modal-tag').textContent = data.tag;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-client').textContent = data.client;
+            document.getElementById('modal-tech').textContent = data.tech;
+            document.getElementById('modal-year').textContent = data.year;
+            document.getElementById('modal-desc').textContent = data.desc;
+
+            // Galeria
+            modalThumbs.innerHTML = '';
+            if (data.images && data.images.length > 0) {
+                setMainImage(data.images[0].url, data.images[0].label);
+
+                data.images.forEach((img, index) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+                    thumb.innerHTML = `<img src="${img.url}" alt="${img.label}">`;
+                    thumb.addEventListener('click', () => {
+                        document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                        setMainImage(img.url, img.label);
+                    });
+                    modalThumbs.appendChild(thumb);
+                });
             }
 
-            document.getElementById('modalDescriptionText').innerHTML = data.description;
-            document.getElementById('modalWhatsappLink').href = `https://wa.me/5531999999999?text=${data.whatsappMsg}`;
-
-            currentProjectImages = data.images;
-            const thumbsContainer = document.getElementById('galleryThumbs');
-            thumbsContainer.innerHTML = '';
-
-            data.images.forEach((img, index) => {
-                thumbsContainer.innerHTML += `
-                    <div class="thumb-item ${index === 0 ? 'active' : ''}" onclick="switchGalleryImage(${index})">
-                        <img src="${img.url}" alt="${img.label}">
-                    </div>
-                `;
-            });
-
-            switchGalleryImage(0);
-
-            const modal = document.getElementById('projectModal');
             modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('modal-open');
         }
 
-        // 11. TROCA SUAVE DE FOTO NA GALERIA DO MODAL
-        function switchGalleryImage(index) {
-            const imgData = currentProjectImages[index];
-            if (!imgData) return;
-
-            const imgElem = document.getElementById('galleryImg');
-            imgElem.classList.add('changing');
-
+        function setMainImage(url, label) {
+            modalMainImg.classList.add('changing');
             setTimeout(() => {
-                imgElem.src = imgData.url;
-                document.getElementById('galleryLabel').innerText = imgData.label;
-
-                imgElem.onload = () => {
-                    imgElem.classList.remove('changing');
-                };
-                setTimeout(() => imgElem.classList.remove('changing'), 200);
-            }, 180);
-
-            const thumbs = document.querySelectorAll('.thumb-item');
-            thumbs.forEach((t, i) => {
-                t.classList.toggle('active', i === index);
-            });
+                modalMainImg.src = url;
+                modalLabel.textContent = label;
+                modalMainImg.classList.remove('changing');
+            }, 200);
         }
 
         function closeModal() {
-            document.getElementById('projectModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
         }
 
-        function closeModalOnOverlay(event) {
-            if (event.target.classList.contains('modal-overlay')) closeModal();
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.project;
+                openModal(id);
+            });
         });
 
-        // FILTRO DE CATEGORIAS
-        function filterPortfolio(category, event) {
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            if (event && event.target) event.target.classList.add('active');
+        modalCloseBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
 
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                if (category === 'todos' || card.getAttribute('data-category') === category) {
-                    card.classList.remove('hide');
-                } else {
-                    card.classList.add('hide');
-                }
-            });
-        }
+        document.getElementById('modal-contact-btn').addEventListener('click', closeModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
