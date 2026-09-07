@@ -8,20 +8,20 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* PALETA REORGANIZADA - VERDE OLIVA COMO PRINCIPAL */
-            --verde-oliva: #556B2F;
-            --verde-oliva-escuro: #3B4A20;
-            --verde-oliva-suave: #6B8E23;
-            --azul-marinho: #1B2A4A;
-            --off-white: #FDFBF7;
-            --terracota: #B85B35;
-            --ocre-dourado: #C5A059;
-            --texto-escuro: #2C3E50;
-            --cinza-leve: #F3F0E9;
+            /* PALETA EDITORIAL REFINADA */
+            --off-white: #FAF8F5;          /* Fundo principal leve */
+            --off-white-card: #FFFFFF;     /* Fundo dos cards */
+            --azul-marinho: #162238;        /* Títulos, textos principais e estrutura */
+            --verde-oliva: #556B2F;         /* Cor de destaque/ação */
+            --verde-oliva-hover: #435424;
+            --ocre-dourado: #C5A059;        /* Linhas e detalhes nobres */
+            --terracota: #B85B35;           /* Tags e categorias */
+            --texto-corpo: #333333;         /* Leitura confortável */
+            --cinza-suave: #EDEAE4;         /* Divisores e fundos de apoio */
         }
 
         html {
@@ -37,8 +37,8 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--off-white);
-            color: var(--texto-escuro);
-            line-height: 1.6;
+            color: var(--texto-corpo);
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, .brand-logo {
@@ -47,20 +47,20 @@
 
         /* HEADER & NAVEGAÇÃO */
         header {
-            background-color: var(--verde-oliva-escuro);
+            background-color: var(--azul-marinho);
             color: var(--off-white);
             padding: 1.2rem 8%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .brand-logo {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: 1px;
             color: var(--off-white);
@@ -68,17 +68,19 @@
 
         .brand-logo span {
             color: var(--ocre-dourado);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: block;
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
         nav a {
             color: var(--off-white);
             text-decoration: none;
             margin-left: 1.8rem;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+            font-weight: 400;
             transition: all 0.3s ease;
             padding-bottom: 4px;
             border-bottom: 2px solid transparent;
@@ -89,34 +91,36 @@
             border-bottom: 2px solid var(--ocre-dourado);
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION (FUNDO LEVE COM CONTRASTE ESCURO) */
         .hero {
-            background: linear-gradient(135deg, var(--verde-oliva-escuro) 0%, var(--verde-oliva) 100%);
-            color: var(--off-white);
-            padding: 5.5rem 8%;
+            background-color: #F2EFE9;
+            color: var(--azul-marinho);
+            padding: 6rem 8%;
             text-align: center;
+            border-bottom: 1px solid var(--cinza-suave);
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--off-white);
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--azul-marinho);
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            max-width: 750px;
+            font-size: 1.05rem;
+            max-width: 720px;
             margin: 0 auto 2rem auto;
-            color: #E2E8D5;
-            font-weight: 300;
+            color: #4A5568;
+            font-weight: 400;
         }
 
         .tagline {
             font-style: italic;
-            color: var(--ocre-dourado);
-            font-size: 1.25rem;
-            margin-bottom: 1.8rem;
-            font-weight: 400;
+            color: var(--verde-oliva);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
         }
 
         .btn {
@@ -124,31 +128,36 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            padding: 0.8rem 1.8rem;
+            padding: 0.85rem 2rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s;
             margin: 0.3rem;
         }
 
         .btn-primary {
-            background-color: var(--ocre-dourado);
-            color: var(--verde-oliva-escuro);
+            background-color: var(--verde-oliva);
+            color: white;
+            box-shadow: 0 4px 10px rgba(85, 107, 47, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: #D4B16A;
+            background-color: var(--verde-oliva-hover);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            border: 1px solid var(--off-white);
-            color: var(--off-white);
+            border: 1px solid var(--azul-marinho);
+            color: var(--azul-marinho);
+            background-color: transparent;
         }
 
         .btn-secondary:hover {
-            background-color: var(--off-white);
-            color: var(--verde-oliva-escuro);
+            background-color: var(--azul-marinho);
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* SEÇÕES GERAIS */
@@ -159,7 +168,7 @@
         .section-title {
             text-align: center;
             font-size: 2rem;
-            color: var(--verde-oliva-escuro);
+            color: var(--azul-marinho);
             margin-bottom: 2.5rem;
             position: relative;
         }
@@ -167,46 +176,46 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
+            width: 45px;
+            height: 2px;
             background-color: var(--ocre-dourado);
-            margin: 0.5rem auto 0 auto;
+            margin: 0.6rem auto 0 auto;
         }
 
         /* SOBRE MIM */
         .about-container {
             display: flex;
-            gap: 3rem;
+            gap: 3.5rem;
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .monogram-box {
-            width: 220px;
-            height: 220px;
-            border: 3px solid var(--verde-oliva);
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--ocre-dourado);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #F0EFEA;
+            background-color: var(--off-white-card);
             border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.04);
         }
 
         .monogram-box .symbol {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            color: var(--verde-oliva-escuro);
+            font-size: 3.2rem;
+            color: var(--azul-marinho);
             line-height: 1;
         }
 
         .monogram-box .subtext {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 2px;
-            color: var(--ocre-dourado);
-            margin-top: 0.5rem;
+            color: var(--verde-oliva);
+            margin-top: 0.4rem;
             text-transform: uppercase;
             font-weight: 600;
         }
@@ -218,8 +227,9 @@
         }
 
         .about-text p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             text-align: justify;
+            color: #444;
         }
 
         .credentials {
@@ -230,38 +240,48 @@
         }
 
         .badge {
-            background-color: var(--cinza-leve);
+            background-color: var(--cinza-suave);
             border-left: 3px solid var(--verde-oliva);
-            color: var(--verde-oliva-escuro);
+            color: var(--azul-marinho);
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             font-weight: 600;
+            border-radius: 0 4px 4px 0;
         }
 
         /* ESPECIALIDADES */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.8rem;
         }
 
         .service-card {
-            background-color: #FFF;
-            padding: 2rem;
+            background-color: var(--off-white-card);
+            padding: 2.2rem 1.8rem;
             border-radius: 6px;
-            border-top: 4px solid var(--verde-oliva);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            transition: transform 0.3s;
+            border-top: 3px solid var(--verde-oliva);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 1px solid var(--cinza-suave);
+            border-right: 1px solid var(--cinza-suave);
+            border-bottom: 1px solid var(--cinza-suave);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
         }
 
         .service-card h3 {
-            color: var(--verde-oliva-escuro);
+            color: var(--azul-marinho);
             margin-bottom: 0.8rem;
             font-size: 1.1rem;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: #555;
         }
 
         /* PORTFÓLIO & ABAS */
@@ -274,21 +294,23 @@
         }
 
         .tab-btn {
-            background-color: #FFF;
-            border: 1px solid var(--verde-oliva);
-            color: var(--verde-oliva-escuro);
+            background-color: var(--off-white-card);
+            border: 1px solid var(--cinza-suave);
+            color: var(--azul-marinho);
             padding: 0.6rem 1.4rem;
             border-radius: 20px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.88rem;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .tab-btn:hover, .tab-btn.active {
             background-color: var(--verde-oliva);
-            color: var(--off-white);
+            color: white;
+            border-color: var(--verde-oliva);
+            box-shadow: 0 3px 10px rgba(85, 107, 47, 0.2);
         }
 
         .portfolio-grid {
@@ -298,11 +320,16 @@
         }
 
         .project-card {
-            background: #FFF;
-            border: 1px solid var(--cinza-leve);
+            background: var(--off-white-card);
+            border: 1px solid var(--cinza-suave);
             border-radius: 6px;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .project-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
         .project-card.hide {
@@ -311,16 +338,16 @@
 
         .project-img-placeholder {
             height: 200px;
-            background-color: #E6E3DB;
+            background-color: #ECEAE3;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #777;
             font-style: italic;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             padding: 1rem;
             text-align: center;
-            border-bottom: 1px solid #DDD;
+            border-bottom: 1px solid var(--cinza-suave);
         }
 
         .project-info {
@@ -328,21 +355,27 @@
         }
 
         .project-tag {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--terracota);
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .project-info h3 {
-            color: var(--verde-oliva-escuro);
-            margin: 0.3rem 0 0.8rem 0;
+            color: var(--azul-marinho);
+            margin: 0.3rem 0 0.6rem 0;
             font-size: 1.1rem;
         }
 
-        /* CONTATO & REDES SOCIAIS */
+        .project-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* CONTATO E REDES SOCIAIS */
         .contact-section {
-            background-color: var(--verde-oliva-escuro);
+            background-color: var(--azul-marinho);
             color: var(--off-white);
             text-align: center;
         }
@@ -356,6 +389,11 @@
             margin: 0 auto;
         }
 
+        .contact-box p {
+            color: #D1D5DB;
+            font-size: 1rem;
+        }
+
         .social-buttons {
             display: flex;
             justify-content: center;
@@ -365,16 +403,16 @@
         }
 
         .social-btn {
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding: 0.9rem 1.8rem;
             border-radius: 30px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            transition: transform 0.3s, background-color 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s, opacity 0.3s;
             color: white;
         }
 
@@ -383,8 +421,8 @@
         }
 
         .whatsapp-btn:hover {
-            background-color: #20ba5a;
-            transform: translateY(-3px);
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .instagram-btn {
@@ -392,20 +430,20 @@
         }
 
         .instagram-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-3px);
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .social-icon {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             fill: currentColor;
         }
 
         /* FOOTER */
         footer {
-            background-color: #2A3517;
-            color: #AAA;
+            background-color: #0E1624;
+            color: #888;
             text-align: center;
             padding: 1.5rem;
             font-size: 0.85rem;
@@ -452,7 +490,7 @@
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
         <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais, modelagem em cerâmica e documentação digital.</p>
-        <div style="margin-top: 1.5rem;">
+        <div style="margin-top: 1.8rem;">
             <a href="#contato" class="btn btn-primary">Solicitar Avaliação</a>
             <a href="#portfolio" class="btn btn-secondary">Ver Projetos</a>
         </div>
@@ -480,7 +518,7 @@
     </section>
 
     <!-- ESPECIALIDADES -->
-    <section id="especialidades" style="background-color: var(--cinza-leve);">
+    <section id="especialidades" style="background-color: #F3F0E9;">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
             <div class="service-card">
@@ -577,14 +615,14 @@
             
             <div class="social-buttons">
                 <!-- WhatsApp -->
-                <a href="https://wa.me/5532984783?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="social-btn whatsapp-btn">
+                <a href="https://wa.me/553298254783?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="social-btn whatsapp-btn">
                     <svg class="social-icon" viewBox="0 0 24 24">
                         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                     </svg>
                     Falar pelo WhatsApp
                 </a>
 
-                <!-- Instagram de Cerâmicas (Substitua o @SEU_USUARIO pelo link do perfil dela) -->
+                <!-- Instagram de Cerâmicas -->
                 <a href="https://www.instagram.com/mikhaartes" target="_blank" class="social-btn instagram-btn">
                     <svg class="social-icon" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
