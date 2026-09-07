@@ -13,15 +13,15 @@
     <style>
         :root {
             /* PALETA EDITORIAL REFINADA */
-            --off-white: #FAF8F5;          /* Fundo principal leve */
-            --off-white-card: #FFFFFF;     /* Fundo dos cards */
-            --azul-marinho: #162238;        /* Títulos, textos principais e estrutura */
-            --verde-oliva: #556B2F;         /* Cor de destaque/ação */
+            --off-white: #FAF8F5;          /* Fundo Off-White principal */
+            --branco-puro: #FFFFFF;        /* Fundo Branco para alternância */
+            --azul-marinho: #162238;        /* Estrutura, Hero e Contato */
+            --verde-oliva: #556B2F;         /* Destaques e botões */
             --verde-oliva-hover: #435424;
-            --ocre-dourado: #C5A059;        /* Linhas e detalhes nobres */
-            --terracota: #B85B35;           /* Tags e categorias */
-            --texto-corpo: #333333;         /* Leitura confortável */
-            --cinza-suave: #EDEAE4;         /* Divisores e fundos de apoio */
+            --ocre-dourado: #C5A059;        /* Detalhes, selo e linhas */
+            --terracota: #B85B35;           /* Tags e destaques secundários */
+            --texto-corpo: #333333;         /* Leitura em fundo claro */
+            --cinza-suave: #EAE6DF;         /* Bordas e divisores */
         }
 
         html {
@@ -53,7 +53,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -91,34 +91,35 @@
             border-bottom: 2px solid var(--ocre-dourado);
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION (AZUL MARINHO) */
         .hero {
-            background-color: #F2EFE9;
-            color: var(--azul-marinho);
-            padding: 6rem 8%;
+            background-color: var(--azul-marinho);
+            color: var(--off-white);
+            padding: 6.5rem 8%;
             text-align: center;
-            border-bottom: 1px solid var(--cinza-suave);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
         }
 
         .hero h1 {
-            font-size: 2.4rem;
-            margin-bottom: 0.8rem;
-            color: var(--azul-marinho);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--off-white);
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         .hero p {
             font-size: 1.05rem;
             max-width: 720px;
             margin: 0 auto 2rem auto;
-            color: #4A5568;
-            font-weight: 400;
+            color: #D1D5DB;
+            font-weight: 300;
         }
 
         .tagline {
             font-style: italic;
-            color: var(--verde-oliva);
-            font-size: 1.2rem;
+            color: var(--ocre-dourado);
+            font-size: 1.25rem;
             margin-bottom: 1.5rem;
             font-weight: 500;
         }
@@ -127,7 +128,6 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
             padding: 0.85rem 2rem;
             border-radius: 4px;
             text-decoration: none;
@@ -140,7 +140,7 @@
         .btn-primary {
             background-color: var(--verde-oliva);
             color: white;
-            box-shadow: 0 4px 10px rgba(85, 107, 47, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
@@ -149,14 +149,14 @@
         }
 
         .btn-secondary {
-            border: 1px solid var(--azul-marinho);
-            color: var(--azul-marinho);
+            border: 1px solid var(--ocre-dourado);
+            color: var(--ocre-dourado);
             background-color: transparent;
         }
 
         .btn-secondary:hover {
-            background-color: var(--azul-marinho);
-            color: white;
+            background-color: var(--ocre-dourado);
+            color: var(--azul-marinho);
             transform: translateY(-2px);
         }
 
@@ -182,7 +182,11 @@
             margin: 0.6rem auto 0 auto;
         }
 
-        /* SOBRE MIM & MONOGRAMA / CHANCELA REFINADA */
+        /* 1. SOBRE MIM (OFF-WHITE) */
+        #sobre {
+            background-color: var(--off-white);
+        }
+
         .about-container {
             display: flex;
             gap: 3.5rem;
@@ -207,7 +211,6 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* Anel pontilhado clássico interno */
         .monogram-box::before {
             content: '';
             position: absolute;
@@ -271,7 +274,7 @@
         }
 
         .badge {
-            background-color: var(--cinza-suave);
+            background-color: #EFECE6;
             border-left: 3px solid var(--verde-oliva);
             color: var(--azul-marinho);
             padding: 0.5rem 1rem;
@@ -280,7 +283,11 @@
             border-radius: 0 4px 4px 0;
         }
 
-        /* ESPECIALIDADES */
+        /* 2. ÁREAS DE ATUAÇÃO (BRANCO PURO) */
+        #especialidades {
+            background-color: var(--branco-puro);
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -288,7 +295,7 @@
         }
 
         .service-card {
-            background-color: var(--off-white-card);
+            background-color: var(--off-white);
             padding: 2.2rem 1.8rem;
             border-radius: 6px;
             border-top: 3px solid var(--verde-oliva);
@@ -307,7 +314,7 @@
         .service-card h3 {
             color: var(--azul-marinho);
             margin-bottom: 0.8rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .service-card p {
@@ -315,7 +322,11 @@
             color: #555;
         }
 
-        /* PORTFÓLIO & ABAS */
+        /* 3. PORTFÓLIO (OFF-WHITE) */
+        #portfolio {
+            background-color: var(--off-white);
+        }
+
         .portfolio-tabs {
             display: flex;
             justify-content: center;
@@ -325,7 +336,7 @@
         }
 
         .tab-btn {
-            background-color: var(--off-white-card);
+            background-color: var(--branco-puro);
             border: 1px solid var(--cinza-suave);
             color: var(--azul-marinho);
             padding: 0.6rem 1.4rem;
@@ -351,7 +362,7 @@
         }
 
         .project-card {
-            background: var(--off-white-card);
+            background: var(--branco-puro);
             border: 1px solid var(--cinza-suave);
             border-radius: 6px;
             overflow: hidden;
@@ -369,7 +380,7 @@
 
         .project-img-placeholder {
             height: 200px;
-            background-color: #ECEAE3;
+            background-color: #ECE8E1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -404,7 +415,7 @@
             color: #666;
         }
 
-        /* CONTATO E REDES SOCIAIS */
+        /* 4. CONTATO (AZUL MARINHO) */
         .contact-section {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -516,7 +527,7 @@
         </nav>
     </header>
 
-    <!-- HERO / ABERTURA -->
+    <!-- HERO / ABERTURA (AZUL MARINHO) -->
     <section class="hero" id="inicio">
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
@@ -527,12 +538,11 @@
         </div>
     </section>
 
-    <!-- SOBRE MIM -->
+    <!-- SOBRE MIM (OFF-WHITE) -->
     <section id="sobre">
         <h2 class="section-title">Sobre a Conservadora</h2>
         <div class="about-container">
             
-            <!-- NOVO MONOGRAMA TIPO CHANCELA / SELO PATRIMONIAL -->
             <div class="monogram-box">
                 <div class="symbol">MA</div>
                 <svg class="monogram-divider" viewBox="0 0 100 12">
@@ -555,30 +565,30 @@
         </div>
     </section>
 
-    <!-- ESPECIALIDADES -->
-    <section id="especialidades" style="background-color: #F3F0E9;">
+    <!-- ESPECIALIDADES / ÁREAS DE ATUAÇÃO (BRANCO PURO) -->
+    <section id="especialidades">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
             <div class="service-card">
-                <h3>📐 Fotogrametria Digital</h3>
+                <h3>Fotogrametria Digital</h3>
                 <p>Documentação e mapeamento tridimensional de precisão para acervos e estruturas arquitetônicas, auxiliando no diagnóstico e salvaguarda digital.</p>
             </div>
             <div class="service-card">
-                <h3>🪵 Restauro em Madeira</h3>
-                <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética em placas históricas (repúblicas), móveis e entalhes.</p>
+                <h3>Restauro em Madeira</h3>
+                <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética em placas históricas (repúblicas), móveis e suportes de madeira.</p>
             </div>
             <div class="service-card">
-                <h3>🏺 Cerâmica Fria & Modelagem</h3>
-                <p>Criação autoral e restauração de peças em cerâmica fria, incluindo incensários, porta-jóias, cinzeiros e objetos decorativos/utilitários.</p>
+                <h3>Cerâmica Fria & Modelagem</h3>
+                <p>Criação autoral e artesanal de peças utilitárias e decorativas em cerâmica fria, incluindo incensários, porta-jóias, cinzeiros e objetos sob encomenda.</p>
             </div>
             <div class="service-card">
-                <h3>📖 Documentos & Esculturas</h3>
-                <p>Higienização, conservação de acervos bibliográficos e consolidação de suporte/policromia em arte sacra e imaginária.</p>
+                <h3>Documentos & Livros Raros</h3>
+                <p>Higienização, conservação preventiva de acervos bibliográficos e gráficos, enxerto em suporte de papel e restauro de encadernações.</p>
             </div>
         </div>
     </section>
 
-    <!-- PORTFÓLIO COM ABAS -->
+    <!-- PORTFÓLIO COM ABAS (OFF-WHITE) -->
     <section id="portfolio">
         <h2 class="section-title">Portfólio de Trabalhos</h2>
         
@@ -588,6 +598,7 @@
             <button class="tab-btn" onclick="filterPortfolio('fotogrametria')">Fotogrametria</button>
             <button class="tab-btn" onclick="filterPortfolio('madeira')">Restauro em Madeira</button>
             <button class="tab-btn" onclick="filterPortfolio('ceramica')">Cerâmica Fria</button>
+            <button class="tab-btn" onclick="filterPortfolio('livros')">Livros & Documentos</button>
         </div>
 
         <div class="portfolio-grid">
@@ -617,35 +628,25 @@
                 <div class="project-img-placeholder">[ Peças Modeladas / Cerâmica Fria ]</div>
                 <div class="project-info">
                     <span class="project-tag">Cerâmica Fria</span>
-                    <h3>Incensários & Utilitários</h3>
-                    <p>Modelagem autoral de peças decorativas, porta-jóias e cinzeiros artesanais com acabamento fino.</p>
+                    <h3>Incensários, Porta-Jóias & Utilitários</h3>
+                    <p>Modelagem autoral e artesanal de porta-jóias, incensários e cinzeiros decorativos com acabamento fino.</p>
                 </div>
             </div>
 
-            <!-- ITEM 4: MADEIRA -->
-            <div class="project-card" data-category="madeira">
-                <div class="project-img-placeholder">[ Imagem do Processo ]</div>
+            <!-- ITEM 4: RESTAURO EM LIVROS (NOVO CARD) -->
+            <div class="project-card" data-category="livros">
+                <div class="project-img-placeholder">[ Processo de Restauro em Papel ]</div>
                 <div class="project-info">
-                    <span class="project-tag">Restauro em Madeira</span>
-                    <h3>Entalhe & Escultura em Madeira</h3>
-                    <p>Higienização profunda e recuperação de pátinas em entalhes de madeira ornamentada.</p>
-                </div>
-            </div>
-
-            <!-- ITEM 5: CERÂMICA FRIA -->
-            <div class="project-card" data-category="ceramica">
-                <div class="project-img-placeholder">[ Detalhes da Modelagem ]</div>
-                <div class="project-info">
-                    <span class="project-tag">Cerâmica Fria</span>
-                    <h3>Porta-Jóias Artesanal</h3>
-                    <p>Peça modelada à mão em cerâmica fria com pintura artística personalizada.</p>
+                    <span class="project-tag">Livros & Documentos</span>
+                    <h3>Conservação & Restauro de Livros</h3>
+                    <p>Higienização documental, consolidação de encadernação, enxerto de papel e salvaguarda de acervo bibliográfico.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- CONTATO E REDES SOCIAIS -->
+    <!-- CONTATO E REDES SOCIAIS (AZUL MARINHO) -->
     <section id="contato" class="contact-section">
         <h2 class="section-title">Solicite um Diagnóstico ou Peça Autoral</h2>
         <div class="contact-box">
