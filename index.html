@@ -45,7 +45,7 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* HEADER & NAVEGAÇÃO (Integrado perfeitamente ao Hero) */
+        /* HEADER & NAVEGAÇÃO */
         header {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -53,8 +53,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: none; /* Removida a sombra que gerava a linha divisória */
-            border-bottom: 1px solid rgba(197, 160, 89, 0.25); /* Linha sutil dourada */
+            box-shadow: none;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.25);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -92,7 +92,7 @@
             border-bottom: 2px solid var(--ocre-dourado);
         }
 
-        /* HERO SECTION (AZUL MARINHO) */
+        /* HERO SECTION */
         .hero {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -136,12 +136,14 @@
             font-size: 0.9rem;
             transition: all 0.3s;
             margin: 0.3rem;
+            cursor: pointer;
         }
 
         .btn-primary {
             background-color: var(--verde-oliva);
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: none;
         }
 
         .btn-primary:hover {
@@ -183,7 +185,7 @@
             margin: 0.6rem auto 0 auto;
         }
 
-        /* 1. SOBRE MIM (OFF-WHITE) */
+        /* 1. SOBRE MIM */
         #sobre {
             background-color: var(--off-white);
         }
@@ -284,7 +286,7 @@
             border-radius: 0 4px 4px 0;
         }
 
-        /* 2. ÁREAS DE ATUAÇÃO (TEXTURA DE TELA DE QUADRO + PARALLAX) */
+        /* 2. ÁREAS DE ATUAÇÃO */
         #especialidades {
             background-image: linear-gradient(rgba(250, 248, 245, 0.82), rgba(250, 248, 245, 0.82)), 
                               url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=80');
@@ -292,7 +294,6 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            position: relative;
         }
 
         .services-grid {
@@ -302,7 +303,7 @@
         }
 
         .service-card {
-            background-color: rgba(255, 255, 255, 0.88); /* Leve transparência para destacar a textura */
+            background-color: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(4px);
             padding: 2.2rem 1.8rem;
             border-radius: 6px;
@@ -331,7 +332,7 @@
             color: #444;
         }
 
-        /* 3. PORTFÓLIO (OFF-WHITE) */
+        /* 3. PORTFÓLIO & CARDS INTERATIVOS */
         #portfolio {
             background-color: var(--off-white);
         }
@@ -377,10 +378,14 @@
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            cursor: pointer;
+            position: relative;
         }
 
         .project-card:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(22, 34, 56, 0.1);
+            border-color: var(--ocre-dourado);
         }
 
         .project-card.hide {
@@ -399,6 +404,11 @@
             padding: 1rem;
             text-align: center;
             border-bottom: 1px solid var(--cinza-suave);
+            transition: background-color 0.3s;
+        }
+
+        .project-card:hover .project-img-placeholder {
+            background-color: #E2DDD4;
         }
 
         .project-info {
@@ -422,9 +432,232 @@
         .project-info p {
             font-size: 0.9rem;
             color: #666;
+            margin-bottom: 1rem;
         }
 
-        /* 4. CONTATO (AZUL MARINHO) */
+        .card-action-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--verde-oliva);
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .project-card:hover .card-action-link {
+            color: var(--verde-oliva-hover);
+            text-decoration: underline;
+        }
+
+        /* MODAL / POP-UP DE PROJETO DETALHADO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(14, 22, 36, 0.82);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background-color: var(--off-white);
+            border-radius: 8px;
+            max-width: 850px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            position: relative;
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--ocre-dourado);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: var(--branco-puro);
+            border: 1px solid var(--cinza-suave);
+            color: var(--azul-marinho);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close-btn:hover {
+            background-color: var(--azul-marinho);
+            color: white;
+            border-color: var(--azul-marinho);
+        }
+
+        .modal-content {
+            padding: 2.5rem 2rem;
+        }
+
+        .modal-header {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid var(--cinza-suave);
+            padding-bottom: 1rem;
+        }
+
+        .modal-tag {
+            color: var(--terracota);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-title {
+            color: var(--azul-marinho);
+            font-size: 1.8rem;
+            margin-top: 0.2rem;
+        }
+
+        /* GALERIA DO MODAL */
+        .modal-gallery {
+            margin-bottom: 2rem;
+        }
+
+        .gallery-main {
+            height: 300px;
+            background-color: #ECE8E1;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-style: italic;
+            border: 1px solid var(--cinza-suave);
+            text-align: center;
+            padding: 1.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .gallery-main-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: var(--azul-marinho);
+            color: var(--off-white);
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-style: normal;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .thumb-item {
+            flex: 1;
+            height: 70px;
+            background-color: #E2DDD4;
+            border-radius: 4px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #666;
+            text-align: center;
+            padding: 0.2rem;
+            transition: all 0.2s;
+        }
+
+        .thumb-item:hover, .thumb-item.active {
+            border-color: var(--verde-oliva);
+            background-color: var(--branco-puro);
+            color: var(--azul-marinho);
+            font-weight: 600;
+        }
+
+        /* FICHA TÉCNICA E TEXTO */
+        .modal-body-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ficha-tecnica {
+            background-color: var(--branco-puro);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--cinza-suave);
+            border-left: 3px solid var(--ocre-dourado);
+        }
+
+        .ficha-tecnica h4 {
+            color: var(--azul-marinho);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--cinza-suave);
+            padding-bottom: 0.4rem;
+        }
+
+        .ficha-item {
+            margin-bottom: 0.7rem;
+            font-size: 0.88rem;
+        }
+
+        .ficha-item strong {
+            color: var(--azul-marinho);
+            display: block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-description p {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .modal-footer {
+            border-top: 1px solid var(--cinza-suave);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        /* 4. CONTATO */
         .contact-section {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -513,11 +746,12 @@
             .hero h1 {
                 font-size: 1.8rem;
             }
-            .social-buttons {
-                flex-direction: column;
-                align-items: stretch;
+            .modal-body-grid {
+                grid-template-columns: 1fr;
             }
-            /* Em telas móveis o attachment fixed pode variar, mantemos a textura suave */
+            .gallery-main {
+                height: 220px;
+            }
             #especialidades {
                 background-attachment: scroll;
             }
@@ -540,7 +774,7 @@
         </nav>
     </header>
 
-    <!-- HERO / ABERTURA (AZUL MARINHO) -->
+    <!-- HERO / ABERTURA -->
     <section class="hero" id="inicio">
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
@@ -551,7 +785,7 @@
         </div>
     </section>
 
-    <!-- SOBRE MIM (OFF-WHITE) -->
+    <!-- SOBRE MIM -->
     <section id="sobre">
         <h2 class="section-title">Sobre a Conservadora</h2>
         <div class="about-container">
@@ -578,7 +812,7 @@
         </div>
     </section>
 
-    <!-- ESPECIALIDADES / ÁREAS DE ATUAÇÃO (TEXTURA DE TELA DE QUADRO + PARALLAX) -->
+    <!-- ÁREAS DE ATUAÇÃO -->
     <section id="especialidades">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
@@ -601,7 +835,7 @@
         </div>
     </section>
 
-    <!-- PORTFÓLIO COM ABAS (OFF-WHITE) -->
+    <!-- PORTFÓLIO DE TRABALHOS -->
     <section id="portfolio">
         <h2 class="section-title">Portfólio de Trabalhos</h2>
         
@@ -617,49 +851,103 @@
         <div class="portfolio-grid">
             
             <!-- ITEM 1: FOTOGRAMETRIA -->
-            <div class="project-card" data-category="fotogrametria">
+            <div class="project-card" data-category="fotogrametria" onclick="openModal('fotogrametria')">
                 <div class="project-img-placeholder">[ Mapeamento 3D / Nuvem de Pontos ]</div>
                 <div class="project-info">
                     <span class="project-tag">Fotogrametria</span>
                     <h3>Levantamento Tridimensional</h3>
-                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e documentação digital de acervo.</p>
+                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e documentação digital.</p>
+                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
                 </div>
             </div>
 
             <!-- ITEM 2: MADEIRA -->
-            <div class="project-card" data-category="madeira">
+            <div class="project-card" data-category="madeira" onclick="openModal('madeira')">
                 <div class="project-img-placeholder">[ Registro de Restauro / Madeira ]</div>
                 <div class="project-info">
                     <span class="project-tag">Restauro em Madeira</span>
                     <h3>Placa de República Histórica</h3>
-                    <p>Tratamento contra cupins, consolidação do suporte de madeira e reintegração da pintura original.</p>
+                    <p>Tratamento contra cupins, consolidação do suporte de madeira e reintegração da pintura.</p>
+                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
                 </div>
             </div>
 
             <!-- ITEM 3: CERÂMICA FRIA -->
-            <div class="project-card" data-category="ceramica">
+            <div class="project-card" data-category="ceramica" onclick="openModal('ceramica')">
                 <div class="project-img-placeholder">[ Peças Modeladas / Cerâmica Fria ]</div>
                 <div class="project-info">
                     <span class="project-tag">Cerâmica Fria</span>
                     <h3>Incensários, Porta-Jóias & Utilitários</h3>
-                    <p>Modelagem autoral e artesanal de porta-jóias, incensários e cinzeiros decorativos com acabamento fino.</p>
+                    <p>Modelagem autoral e artesanal de porta-jóias, incensários e cinzeiros decorativos.</p>
+                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
                 </div>
             </div>
 
             <!-- ITEM 4: RESTAURO EM LIVROS -->
-            <div class="project-card" data-category="livros">
+            <div class="project-card" data-category="livros" onclick="openModal('livros')">
                 <div class="project-img-placeholder">[ Processo de Restauro em Papel ]</div>
                 <div class="project-info">
                     <span class="project-tag">Livros & Documentos</span>
                     <h3>Conservação & Restauro de Livros</h3>
-                    <p>Higienização documental, consolidação de encadernação, enxerto de papel e salvaguarda de acervo bibliográfico.</p>
+                    <p>Higienização documental, consolidação de encadernação e enxerto em suporte de papel.</p>
+                    <span class="card-action-link">Clique para ver detalhes e fotos &rarr;</span>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- CONTATO E REDES SOCIAIS (AZUL MARINHO) -->
+    <!-- MODAL POP-UP PARA DETALHES DO PROJETO -->
+    <div class="modal-overlay" id="projectModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="closeModal()" title="Fechar (ESC)">&times;</button>
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <span class="modal-tag" id="modalTag">Categoria</span>
+                    <h2 class="modal-title" id="modalTitle">Título do Projeto</h2>
+                </div>
+
+                <!-- GALERIA INTERATIVA DE FOTOS NO MODAL -->
+                <div class="modal-gallery">
+                    <div class="gallery-main" id="galleryMain">
+                        <span class="gallery-main-label" id="galleryLabel">Foto 1</span>
+                        <div id="galleryText">[ Carregando imagem... ]</div>
+                    </div>
+                    <div class="gallery-thumbs" id="galleryThumbs">
+                        <!-- Gerado via JS -->
+                    </div>
+                </div>
+
+                <!-- FICHA TÉCNICA + DESCRIÇÃO -->
+                <div class="modal-body-grid">
+                    <div class="ficha-tecnica">
+                        <h4>Ficha Técnica</h4>
+                        <div id="modalFicha">
+                            <!-- Gerado via JS -->
+                        </div>
+                    </div>
+
+                    <div class="modal-description">
+                        <h4 style="color: var(--azul-marinho); font-size: 1rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--cinza-suave); padding-bottom: 0.4rem;">Relato da Intervenção</h4>
+                        <div id="modalDescriptionText">
+                            <!-- Gerado via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTÃO DE AÇÃO NO MODAL -->
+                <div class="modal-footer">
+                    <a id="modalWhatsappLink" href="#" target="_blank" class="btn btn-primary" style="background-color: #25D366;">
+                        Solicitar Orçamento para este Tipo de Trabalho
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTATO E REDES SOCIAIS -->
     <section id="contato" class="contact-section">
         <h2 class="section-title">Solicite um Diagnóstico ou Peça Autoral</h2>
         <div class="contact-box">
@@ -674,7 +962,7 @@
                     Falar pelo WhatsApp
                 </a>
 
-                <!-- Instagram de Cerâmicas -->
+                <!-- Instagram -->
                 <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="social-btn instagram-btn">
                     <svg class="social-icon" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -690,9 +978,171 @@
         <p>&copy; 2026 Mikhaely Aparecida — Conservação & Restauro. Ouro Preto / MG.</p>
     </footer>
 
-    <!-- JAVASCRIPT: SCROLLSPY + FILTRO DE ABAS -->
+    <!-- JAVASCRIPT: SCROLLSPY + FILTRO + MODAL DE PROJETOS -->
     <script>
-        // 1. SCROLLSPY
+        // 1. DADOS DETALHADOS DOS PROJETOS (MODAL)
+        const projectsData = {
+            'fotogrametria': {
+                tag: 'Fotogrametria & Documentação',
+                title: 'Levantamento Tridimensional de Precisão',
+                images: [
+                    { label: 'Visão Geral / Nuvem 3D', text: '[ Imagem 1: Modelo Tridimensional e Nuvem de Pontos Densa ]' },
+                    { label: 'Mapeamento de Danos', text: '[ Imagem 2: Mapeamento Diagnóstico de Fissuras e Desgastes ]' },
+                    { label: 'Ortoimagem de Alta Resolução', text: '[ Imagem 3: Registro Métrico para Projeto de Restauro ]' }
+                ],
+                ficha: {
+                    'Objeto': 'Estrutura Arquitetônica / Peça Tridimensional',
+                    'Metodologia': 'Fotogrametria Digital Terrestre (SfM)',
+                    'Tecnologia': 'Modelagem por nuvem de pontos densa',
+                    'Finalidade': 'Diagnóstico de conservação e salvaguarda digital'
+                },
+                description: `
+                    <p>A fotogrametria digital é uma técnica não invasiva essencial para o diagnóstico e a conservação preventiva do patrimônio. Através da captação de centenas de fotografias sobrepostas sob ângulos calculados, é gerado um modelo tridimensional milimétrico.</p>
+                    <p>Este processo permite identificar patologias estruturais — como microfissuras, deformações, perda de massa e descolamentos — sem nenhum contato físico com a peça. O resultado serve como acervo de salvaguarda digital e base técnica para futuras intervenções.</p>
+                `,
+                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20saber%20mais%20sobre%20o%20serviço%20de%20Fotogrametria%20Digital.'
+            },
+            'madeira': {
+                tag: 'Restauro em Madeira',
+                title: 'Conservação e Restauro de Placa Histórica',
+                images: [
+                    { label: 'Estado Inicial (Antes)', text: '[ Imagem 1: Placa com degradação e ataque de xilófagos ]' },
+                    { label: 'Tratamento & Enxerto', text: '[ Imagem 2: Imunização e consolidação das fibras de madeira ]' },
+                    { label: 'Resultado Final (Depois)', text: '[ Imagem 3: Peça restaurada com reintegração pictórica ]' }
+                ],
+                ficha: {
+                    'Objeto': 'Placa entalhada de República Estudantil',
+                    'Material': 'Madeira maciça com camada pictórica',
+                    'Intervenção': 'Descupinização, consolidação e reestruturação',
+                    'Critério Ético': 'Intervenção mínima e reversibilidade dos materiais'
+                },
+                description: `
+                    <p>O projeto contemplou o diagnóstico minucioso do estado de conservação da peça, que apresentava contaminação por insetos xilófagos (cupins) e fragilização grave do suporte de madeira.</p>
+                    <p>Foi realizada imunização química localizada, seguida da consolidação das fibras enfraquecidas com resina sintética reversível. As lacunas do suporte foram preenchidas com massa de restauração compatível e a pintura passou por higienização e nivelamento pictórico pontual, preservando a pátina e a memória histórica da obra.</p>
+                `,
+                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento%20para%20Restauro%20em%20Madeira.'
+            },
+            'ceramica': {
+                tag: 'Cerâmica Fria & Modelagem',
+                title: 'Coleção Autoral de Utilitários em Cerâmica Fria',
+                images: [
+                    { label: 'Coleção Autoral', text: '[ Imagem 1: Conjunto de Porta-Jóias, Incensários e Cinzeiros ]' },
+                    { label: 'Detalhe do Acabamento', text: '[ Imagem 2: Texturas e pintura artesanal em foco ]' },
+                    { label: 'Processo de Cura', text: '[ Imagem 3: Modelagem manual e secagem controlada ]' }
+                ],
+                ficha: {
+                    'Produtos': 'Porta-jóias, incensários e cinzeiros decorativos',
+                    'Técnica': 'Modelagem manual em cerâmica fria',
+                    'Acabamento': 'Pintura autoral e selagem protetora impermeável',
+                    'Diferencial': 'Peças exclusivas moldadas 100% à mão'
+                },
+                description: `
+                    <p>Criação autoral de utilitários e objetos decorativos feitos à mão, unindo o cuidado artesanal do restauro com o design contemporâneo. Cada peça passa por um processo rigoroso de cura, lixamento em múltiplas gramaturas para toque aveludado e pintura original.</p>
+                    <p>As peças recebem uma camada de verniz impermeabilizante de alta resistência, garantindo durabilidade, fácil higienização e proteção para uso diário em ambientes internos.</p>
+                `,
+                whatsappMsg: 'Olá,%20Mikhaely!%20Tenho%20interesse%20nas%20suas%20peças%20em%20Cerâmica%20Fria.'
+            },
+            'livros': {
+                tag: 'Livros & Documentos Raros',
+                title: 'Conservação e Restauro de Livros e Papel',
+                images: [
+                    { label: 'Estado do Suporte (Antes)', text: '[ Imagem 1: Páginas oxidadas e rasgadas / Lombada danificada ]' },
+                    { label: 'Higienização e Enxerto', text: '[ Imagem 2: Enxerto com papel japonês e consolidação ]' },
+                    { label: 'Obra Restaurada (Depois)', text: '[ Imagem 3: Encadernação reestruturada e miolo protegido ]' }
+                ],
+                ficha: {
+                    'Objeto': 'Acervo bibliográfico e documentos em suporte de papel',
+                    'Materiais Utilizados': 'Papel japonês, amido de trigo e adesivos celulósicos',
+                    'Intervenção': 'Higienização mecânica, enxertos e consolidação da costura',
+                    'Objetivo': 'Estabilização físico-química e restauração do manuseio'
+                },
+                description: `
+                    <p>Atuação focada na conservação preventiva e restauração de bens bibliográficos e arquivísticos. O processo inicia com a higienização folha a folha utilizando trinchas macias e borrachas neutras para remoção de sujidades superficiais.</p>
+                    <p>Rasgos, perdas de suporte e áreas fragilizadas são recuperadas através de enxertos milimétricos com papel japonês de fibras longas e metilcelulose. A encadernação passa por estabilização ou recomposição das costuras originais, assegurando a preservação da memória gráfica e a funcionalidade da obra.</p>
+                `,
+                whatsappMsg: 'Olá,%20Mikhaely!%20Gostaria%20de%20um%20orçamento%20para%20Restauro%20de%20Livros%20ou%20Documentos.'
+            }
+        };
+
+        // 2. LÓGICA DE ABERTURA E PREENCHIMENTO DO MODAL
+        let currentProjectImages = [];
+
+        function openModal(projectId) {
+            const data = projectsData[projectId];
+            if (!data) return;
+
+            document.getElementById('modalTag').innerText = data.tag;
+            document.getElementById('modalTitle').innerText = data.title;
+            
+            // Preenche a Ficha Técnica
+            const fichaContainer = document.getElementById('modalFicha');
+            fichaContainer.innerHTML = '';
+            for (const [key, value] of Object.entries(data.ficha)) {
+                fichaContainer.innerHTML += `
+                    <div class="ficha-item">
+                        <strong>${key}</strong>
+                        <span>${value}</span>
+                    </div>
+                `;
+            }
+
+            // Preenche Descrição e Link do WhatsApp
+            document.getElementById('modalDescriptionText').innerHTML = data.description;
+            document.getElementById('modalWhatsappLink').href = `https://wa.me/5531999999999?text=${data.whatsappMsg}`;
+
+            // Configura Galeria
+            currentProjectImages = data.images;
+            const thumbsContainer = document.getElementById('galleryThumbs');
+            thumbsContainer.innerHTML = '';
+
+            data.images.forEach((img, index) => {
+                thumbsContainer.innerHTML += `
+                    <div class="thumb-item ${index === 0 ? 'active' : ''}" onclick="switchGalleryImage(${index})">
+                        ${img.label}
+                    </div>
+                `;
+            });
+
+            switchGalleryImage(0);
+
+            // Exibe Modal e Bloqueia Scroll do Fundo
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function switchGalleryImage(index) {
+            const imgData = currentProjectImages[index];
+            if (!imgData) return;
+
+            document.getElementById('galleryLabel').innerText = imgData.label;
+            document.getElementById('galleryText').innerText = imgData.text;
+
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach((t, i) => {
+                if (i === index) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        }
+
+        // Fechar com a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // 3. SCROLLSPY (NAVEGAÇÃO)
         const sections = document.querySelectorAll('section, header');
         const navLinks = document.querySelectorAll('.nav-link');
 
@@ -713,7 +1163,7 @@
             });
         });
 
-        // 2. FILTRO DE ABAS DO PORTFÓLIO
+        // 4. FILTRO DE ABAS DO PORTFÓLIO
         function filterPortfolio(category) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
