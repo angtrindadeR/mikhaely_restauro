@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mikhaely Aparecida — Conservação & Restauro</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -19,6 +18,10 @@
             --ocre-dourado: #C5A059;
             --texto-escuro: #2C3E50;
             --cinza-leve: #EFECE6;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         * {
@@ -72,11 +75,14 @@
             text-decoration: none;
             margin-left: 1.8rem;
             font-size: 0.9rem;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
         }
 
-        nav a:hover {
+        nav a:hover, nav a.active {
             color: var(--ocre-dourado);
+            border-bottom: 2px solid var(--ocre-dourado);
         }
 
         /* HERO SECTION */
@@ -109,7 +115,10 @@
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             padding: 0.8rem 1.8rem;
             border-radius: 4px;
             text-decoration: none;
@@ -139,7 +148,7 @@
 
         /* SEÇÕES GERAIS */
         section {
-            padding: 4rem 8%;
+            padding: 5rem 8%;
         }
 
         .section-title {
@@ -159,7 +168,7 @@
             margin: 0.5rem auto 0 auto;
         }
 
-        /* SOBRE (SEM FOTO / COM EMBLEMA) */
+        /* SOBRE (COM MONOGRAMA) */
         .about-container {
             display: flex;
             gap: 3rem;
@@ -225,8 +234,8 @@
         /* ESPECIALIDADES */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
         }
 
         .service-card {
@@ -245,13 +254,39 @@
         .service-card h3 {
             color: var(--azul-marinho);
             margin-bottom: 0.8rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
-        /* PORTFÓLIO / FICHAS */
+        /* PORTFÓLIO & ABAS */
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: #FFF;
+            border: 1px solid var(--azul-marinho);
+            color: var(--azul-marinho);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--azul-marinho);
+            color: var(--off-white);
+        }
+
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -260,6 +295,11 @@
             border: 1px solid var(--cinza-leve);
             border-radius: 6px;
             overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .project-card.hide {
+            display: none;
         }
 
         .project-img-placeholder {
@@ -271,6 +311,8 @@
             color: #777;
             font-style: italic;
             font-size: 0.9rem;
+            padding: 1rem;
+            text-align: center;
         }
 
         .project-info {
@@ -287,9 +329,10 @@
         .project-info h3 {
             color: var(--azul-marinho);
             margin: 0.3rem 0 0.8rem 0;
+            font-size: 1.1rem;
         }
 
-        /* CONTATO */
+        /* CONTATO & WHATSAPP */
         .contact-section {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -309,13 +352,27 @@
             background-color: #25D366;
             color: white;
             font-size: 1.1rem;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             border-radius: 30px;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             margin-top: 1.5rem;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: scale(1.03);
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
         /* FOOTER */
@@ -334,7 +391,8 @@
                 text-align: center;
             }
             nav a {
-                margin: 0 0.5rem;
+                margin: 0 0.4rem;
+                font-size: 0.85rem;
             }
             .hero h1 {
                 font-size: 1.8rem;
@@ -344,32 +402,29 @@
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
     <header>
         <div class="brand-logo">
             MIKHAELY APARECIDA
             <span>CONSERVAÇÃO & RESTAURO</span>
         </div>
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#especialidades">Atuação</a>
-            <a href="#portfolio">Portfólio</a>
-            <a href="#contato">Contato</a>
+        <nav id="navbar">
+            <a href="#sobre" class="nav-link active">Sobre</a>
+            <a href="#especialidades" class="nav-link">Atuação</a>
+            <a href="#portfolio" class="nav-link">Portfólio</a>
+            <a href="#contato" class="nav-link">Contato</a>
         </nav>
     </header>
 
-    <!-- HERO / ABERTURA -->
-    <section class="hero">
+    <section class="hero" id="inicio">
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
-        <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais à documentação digital.</p>
+        <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais, modelagem em cerâmica e documentação digital.</p>
         <div style="margin-top: 1.5rem;">
             <a href="#contato" class="btn btn-primary">Solicitar Avaliação</a>
             <a href="#portfolio" class="btn btn-secondary">Ver Projetos</a>
         </div>
     </section>
 
-    <!-- SOBRE MIM (COM MONOGRAMA) -->
     <section id="sobre">
         <h2 class="section-title">Sobre a Conservadora</h2>
         <div class="about-container">
@@ -380,7 +435,7 @@
             <div class="about-text">
                 <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora dedicada à preservação da memória física e cultural do patrimônio histórico brasileiro.</p>
                 <p>Minha trajetória é fundamentada em duas das mais prestigiadas instituições do país: a graduação em <strong>Conservação e Restauro de Bens Imóveis pelo IFMG - Campus Ouro Preto</strong> e a especialização em <strong>Bens Móveis pela Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
-                <p>Trabalho com rigor científico, assegurando intervenções mínimas, materiais reversíveis e total respeito à autenticidade de cada obra.</p>
+                <p>Trabalho com rigor científico e sensibilidade artística, assegurando intervenções mínimas, materiais reversíveis e criação de peças exclusivas em cerâmica fria.</p>
                 
                 <div class="credentials">
                     <div class="badge">IFMG Ouro Preto — Bens Imóveis</div>
@@ -390,12 +445,11 @@
         </div>
     </section>
 
-    <!-- ESPECIALIDADES -->
     <section id="especialidades" style="background-color: var(--cinza-leve);">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
             <div class="service-card">
-                <h3>📐 Levantamento Fotogramétrico</h3>
+                <h3>📐 Fotogrametria Digital</h3>
                 <p>Documentação e mapeamento tridimensional de precisão para acervos e estruturas arquitetônicas, auxiliando no diagnóstico e salvaguarda digital.</p>
             </div>
             <div class="service-card">
@@ -403,23 +457,39 @@
                 <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética em placas históricas (repúblicas), móveis e entalhes.</p>
             </div>
             <div class="service-card">
-                <h3>📖 Documentos & Livros Antigos</h3>
-                <p>Higienização a seco, desacidificação, reestruturação de suportes em papel, encadernação histórica e conservação de acervos bibliográficos.</p>
+                <h3>🏺 Cerâmica Fria & Modelagem</h3>
+                <p>Criação autoral e restauração de peças em cerâmica fria, incluindo incensários, porta-jóias, cinzeiros e objetos decorativos/utilitários.</p>
             </div>
             <div class="service-card">
-                <h3>🗿 Arte Sacra & Esculturas</h3>
-                <p>Fixação de camada pictórica, consolidação de suporte, remoção de repinturas inadequadas e reintegração cromática em imagens polícromas.</p>
+                <h3>📖 Documentos & Esculturas</h3>
+                <p>Higienização, conservação de acervos bibliográficos e consolidação de suporte/policromia em arte sacra e imaginária.</p>
             </div>
         </div>
     </section>
 
-    <!-- PORTFÓLIO / PROJETOS -->
     <section id="portfolio">
-        <h2 class="section-title">Portfólio de Intervenções</h2>
+        <h2 class="section-title">Portfólio de Trabalhos</h2>
+        
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" onclick="filterPortfolio('todos')">Todos</button>
+            <button class="tab-btn" onclick="filterPortfolio('fotogrametria')">Fotogrametria</button>
+            <button class="tab-btn" onclick="filterPortfolio('madeira')">Restauro em Madeira</button>
+            <button class="tab-btn" onclick="filterPortfolio('ceramica')">Cerâmica Fria</button>
+        </div>
+
         <div class="portfolio-grid">
             
-            <div class="project-card">
-                <div class="project-img-placeholder">[ Registro Fotográfico / Antes & Depois ]</div>
+            <div class="project-card" data-category="fotogrametria">
+                <div class="project-img-placeholder">[ Mapeamento 3D / Nuvem de Pontos ]</div>
+                <div class="project-info">
+                    <span class="project-tag">Fotogrametria</span>
+                    <h3>Levantamento Tridimensional</h3>
+                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e documentação digital de acervo.</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="madeira">
+                <div class="project-img-placeholder">[ Registro de Restauro / Madeira ]</div>
                 <div class="project-info">
                     <span class="project-tag">Restauro em Madeira</span>
                     <h3>Placa de República Histórica</h3>
@@ -427,44 +497,94 @@
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-img-placeholder">[ Modelo 3D / Mapeamento Digital ]</div>
+            <div class="project-card" data-category="ceramica">
+                <div class="project-img-placeholder">[ Peças Modeladas / Cerâmica Fria ]</div>
                 <div class="project-info">
-                    <span class="project-tag">Fotogrametria</span>
-                    <h3>Levantamento Tridimensional</h3>
-                    <p>Registro métrico de alta fidelidade para diagnóstico de conservação e salvaguarda digital.</p>
+                    <span class="project-tag">Cerâmica Fria</span>
+                    <h3>Incensários & Utilitários</h3>
+                    <p>Modelagem autoral de peças decorativas, porta-jóias e cinzeiros artesanais com acabamento fino.</p>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-img-placeholder">[ Registro de Processo Técnico ]</div>
+            <div class="project-card" data-category="madeira">
+                <div class="project-img-placeholder">[ Imagem do Processo ]</div>
                 <div class="project-info">
-                    <span class="project-tag">Livros e Documentos</span>
-                    <h3>Restauração de Livro Antigo</h3>
-                    <p>Higienização de suporte em papel, consolidação de rasgos e reconstrução da encadernação original.</p>
+                    <span class="project-tag">Restauro em Madeira</span>
+                    <h3>Entalhe & Escultura em Madeira</h3>
+                    <p>Higienização profunda e recuperação de pátinas em entalhes de madeira ornamentada.</p>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="ceramica">
+                <div class="project-img-placeholder">[ Detalhes da Modelagem ]</div>
+                <div class="project-info">
+                    <span class="project-tag">Cerâmica Fria</span>
+                    <h3>Porta-Jóias Artesanal</h3>
+                    <p>Peça modelada à mão em cerâmica fria com pintura artística personalizada.</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- CONTATO -->
     <section id="contato" class="contact-section">
-        <h2 class="section-title">Solicite uma Avaliação Técnico-Diagnóstica</h2>
+        <h2 class="section-title">Solicite um Diagnóstico ou Peça Autoral</h2>
         <div class="contact-box">
-            <p>Atendimento a colecionadores, instituições e acervos particulares em Ouro Preto, Região dos Inconfidentes e Belo Horizonte.</p>
+            <p>Atendimento para projetos de conservação/restauro e encomendas em cerâmica fria para Ouro Preto, Região dos Inconfidentes e Belo Horizonte.</p>
             
-            <!-- Substitua o número abaixo pelo WhatsApp real dela -->
-            <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20solicitar%20um%20orçamento%20de%20restauro." target="_blank" class="whatsapp-btn">
-                📱 Falar pelo WhatsApp
+            <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="whatsapp-btn">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                Falar pelo WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Mikhaely Aparecida — Conservação & Restauro. Ouro Preto / MG.</p>
     </footer>
 
+    <script>
+        // 1. SCROLLSPY (Destaca o menu conforme o scroll)
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // 2. FILTRO DE ABAS DO PORTFÓLIO
+        function filterPortfolio(category) {
+            // Atualizar botão ativo
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrar cards
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'todos' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
