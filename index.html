@@ -31,10 +31,12 @@
             background-color: var(--off-white);
             color: var(--texto-corpo);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, .brand-logo { font-family: 'Cinzel', serif; }
 
+        /* 1. HEADER SOFISTICADO */
         header {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -46,6 +48,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, padding 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        header.scrolled {
+            background: rgba(22, 34, 56, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,.15);
         }
 
         .brand-logo {
@@ -80,37 +92,76 @@
             border-bottom: 2px solid var(--ocre-dourado);
         }
 
+        /* 2. HERO CINEMATOGRÁFICO */
         .hero {
             background-color: var(--azul-marinho);
             color: var(--off-white);
-            padding: 6.5rem 8%;
+            padding: 6.5rem 8% 4rem 8%;
             text-align: center;
             border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--off-white);
-            font-weight: 700;
+        .hero h1,
+        .hero .tagline,
+        .hero > p:not(.tagline),
+        .hero .hero-buttons,
+        .hero .scroll-indicator {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroReveal 1s cubic-bezier(.22,1,.36,1) forwards;
         }
 
-        .hero p {
-            font-size: 1.05rem;
-            max-width: 720px;
-            margin: 0 auto 2rem auto;
-            color: #D1D5DB;
-            font-weight: 300;
+        .hero h1 { animation-delay: .15s; font-size: 2.5rem; margin-bottom: 1rem; color: var(--off-white); font-weight: 700; }
+        .hero .tagline { animation-delay: .3s; font-style: italic; color: var(--ocre-dourado); font-size: 1.25rem; margin-bottom: 1.5rem; font-weight: 500; }
+        .hero > p:not(.tagline) { animation-delay: .45s; font-size: 1.05rem; max-width: 720px; margin: 0 auto 2rem auto; color: #D1D5DB; font-weight: 300; }
+        .hero .hero-buttons { animation-delay: .6s; }
+        .hero .scroll-indicator { animation-delay: .75s; }
+
+        @keyframes heroReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .tagline {
-            font-style: italic;
-            color: var(--ocre-dourado);
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
+        /* 3. INDICADOR DE SCROLL */
+        .scroll-indicator {
+            margin-top: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .6rem;
+            color: rgba(250,248,245,.6);
+            font-size: .65rem;
+            letter-spacing: 2px;
             font-weight: 500;
         }
 
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: var(--ocre-dourado);
+            animation: scrollPulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% {
+                transform: scaleY(.4);
+                transform-origin: top;
+                opacity: .4;
+            }
+            50% {
+                transform: scaleY(1);
+                transform-origin: top;
+                opacity: 1;
+            }
+        }
+
+        /* BOTÕES & SETA MICRO-INTERAÇÃO */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -120,9 +171,20 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             margin: 0.3rem;
             cursor: pointer;
+            position: relative;
+        }
+
+        .btn-arrow {
+            display: inline-block;
+            margin-left: 0.5rem;
+            transition: transform 0.35s ease;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translate(3px, -3px);
         }
 
         .btn-primary {
@@ -148,7 +210,7 @@
             transform: translateY(-2px);
         }
 
-        section { padding: 5rem 8%; }
+        section { padding: 5.5rem 8%; }
 
         .section-title {
             text-align: center;
@@ -167,6 +229,32 @@
             margin: 0.6rem auto 0 auto;
         }
 
+        /* 12. EFEITOS DE REVELAÇÃO GLOBAL (SCROLL REVEAL) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .8s ease, transform .8s cubic-bezier(.22,1,.36,1);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
+        }
+
+        .reveal.visible,
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
         #sobre { background-color: var(--off-white); }
 
         .about-container {
@@ -177,6 +265,7 @@
             flex-wrap: wrap;
         }
 
+        /* 5. MONOGRAMA MICRO-ANIMAÇÃO */
         .monogram-box {
             width: 210px;
             height: 210px;
@@ -190,6 +279,12 @@
             box-shadow: 0 8px 25px rgba(22, 34, 56, 0.07);
             position: relative;
             padding: 1.5rem;
+            transition: transform .7s cubic-bezier(.22,1,.36,1), box-shadow .7s ease;
+        }
+
+        .monogram-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(22, 34, 56, 0.12);
         }
 
         .monogram-box::before {
@@ -246,7 +341,7 @@
         }
 
         #especialidades {
-            background-image: linear-gradient(rgba(250, 248, 245, 0.82), rgba(250, 248, 245, 0.82)), 
+            background-image: linear-gradient(rgba(250, 248, 245, 0.85), rgba(250, 248, 245, 0.85)), 
                               url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-position: center;
@@ -259,17 +354,60 @@
             gap: 1.8rem;
         }
 
+        /* 6 & 7. CARDS DE ATUAÇÃO EDITORIAIS COM HOVER E NÚMEROS */
         .service-card {
-            background-color: rgba(255, 255, 255, 0.88);
-            padding: 2.2rem 1.8rem;
+            background-color: rgba(255, 255, 255, 0.92);
+            padding: 2.5rem 1.8rem 2.2rem 1.8rem;
             border-radius: 6px;
-            border-top: 3px solid var(--verde-oliva);
-            border-left: 1px solid var(--cinza-suave);
-            border-right: 1px solid var(--cinza-suave);
-            border-bottom: 1px solid var(--cinza-suave);
+            border: 1px solid var(--cinza-suave);
+            position: relative;
+            overflow: hidden;
+            transition: transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s ease, opacity .8s ease;
         }
 
-        .service-card h3 { color: var(--azul-marinho); margin-bottom: 0.8rem; font-size: 1.15rem; }
+        .service-card-number {
+            position: absolute;
+            top: 0.4rem;
+            right: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: rgba(22, 34, 56, 0.05);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--ocre-dourado);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .6s cubic-bezier(.22,1,.36,1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(22, 34, 56, 0.12);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* 13. STAGGER DELAY NOS CARDS DE SERVIÇO */
+        .service-card:nth-child(1) { transition-delay: .05s; }
+        .service-card:nth-child(2) { transition-delay: .15s; }
+        .service-card:nth-child(3) { transition-delay: .25s; }
+        .service-card:nth-child(4) { transition-delay: .35s; }
+
+        .service-card h3 { color: var(--azul-marinho); margin-bottom: 0.8rem; font-size: 1.15rem; position: relative; z-index: 1; }
+        .service-card p { position: relative; z-index: 1; font-size: 0.9rem; color: #555; }
 
         #portfolio { background-color: var(--off-white); }
 
@@ -304,24 +442,33 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            position: relative;
         }
 
+        /* 8 & 9. CARDS DO PORTFÓLIO E ZOOM NA IMAGEM (1.04x) */
         .project-card {
             background: var(--branco-puro);
             border: 1px solid var(--cinza-suave);
             border-radius: 6px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease;
             cursor: pointer;
+            opacity: 1;
+            transform: scale(1);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(22, 34, 56, 0.1);
+            box-shadow: 0 12px 30px rgba(22, 34, 56, 0.12);
             border-color: var(--ocre-dourado);
         }
 
-        .project-card.hide { display: none; }
+        .project-card.hide {
+            opacity: 0;
+            transform: scale(.94);
+            pointer-events: none;
+            display: none;
+        }
 
         .card-img-cover {
             width: 100%;
@@ -330,6 +477,11 @@
             display: block;
             border-bottom: 1px solid var(--cinza-suave);
             background-color: #ECE8E1;
+            transition: transform .8s cubic-bezier(.22,1,.36,1);
+        }
+
+        .project-card:hover .card-img-cover {
+            transform: scale(1.04);
         }
 
         .project-info { padding: 1.5rem; }
@@ -338,12 +490,13 @@
         .project-info p { font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
         .card-action-link { font-size: 0.82rem; font-weight: 600; color: var(--verde-oliva); }
 
-        /* MODAL */
+        /* 10. MODAL ANIMAÇÃO DE ENTRADA SUAVE */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(14, 22, 36, 0.82);
-            backdrop-filter: blur(6px);
+            background-color: rgba(14, 22, 36, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -351,10 +504,13 @@
             padding: 1.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
-        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .modal-container {
             background-color: var(--off-white);
@@ -365,6 +521,14 @@
             overflow-y: auto;
             position: relative;
             border: 1px solid var(--ocre-dourado);
+            transform: translateY(30px) scale(.97);
+            opacity: 0;
+            transition: transform .6s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         .modal-close-btn {
@@ -386,6 +550,7 @@
         .modal-tag { color: var(--terracota); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
         .modal-title { color: var(--azul-marinho); font-size: 1.8rem; }
 
+        /* 11. ANIMAÇÃO DA GALERIA DO MODAL */
         .gallery-main {
             height: 380px;
             background-color: #ECE8E1;
@@ -401,6 +566,14 @@
             height: 100%;
             object-fit: contain;
             background-color: #0E1624;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity .35s ease, transform .5s cubic-bezier(.22,1,.36,1);
+        }
+
+        .gallery-main img.changing {
+            opacity: 0;
+            transform: scale(.97);
         }
 
         .gallery-main-label {
@@ -425,7 +598,7 @@
             border: 2px solid transparent;
             cursor: pointer;
             overflow: hidden;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .thumb-item img {
@@ -470,7 +643,9 @@
             font-size: 0.95rem; padding: 0.9rem 1.8rem; border-radius: 30px;
             text-decoration: none; display: inline-flex; align-items: center; gap: 0.6rem;
             font-weight: 600; color: white;
+            transition: transform 0.3s ease;
         }
+        .social-btn:hover { transform: translateY(-2px); }
         .whatsapp-btn { background-color: #25D366; }
         .instagram-btn { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
@@ -501,22 +676,28 @@
         </nav>
     </header>
 
-    <!-- HERO / ABERTURA -->
+    <!-- HERO / ABERTURA CINEMATOGRÁFICA -->
     <section class="hero" id="inicio">
         <h1>Rigor técnico na preservação do patrimônio</h1>
         <p class="tagline">"Preservando a história, eternizando memórias."</p>
         <p>Soluções em conservação e restauração de bens móveis e imóveis em Ouro Preto e região, integrando metodologias tradicionais, modelagem em cerâmica e documentação digital.</p>
-        <div style="margin-top: 1.8rem;">
-            <a href="#contato" class="btn btn-primary">Solicitar Avaliação</a>
-            <a href="#portfolio" class="btn btn-secondary">Ver Projetos</a>
+        <div class="hero-buttons" style="margin-top: 1.8rem;">
+            <a href="#contato" class="btn btn-primary">Solicitar Avaliação <span class="btn-arrow">↗</span></a>
+            <a href="#portfolio" class="btn btn-secondary">Ver Projetos <span class="btn-arrow">↗</span></a>
+        </div>
+        
+        <!-- INDICADOR DE SCROLL -->
+        <div class="scroll-indicator">
+            <span>ROLE PARA EXPLORAR</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- SOBRE MIM -->
     <section id="sobre">
-        <h2 class="section-title">Sobre a Conservadora</h2>
+        <h2 class="section-title reveal">Sobre a Conservadora</h2>
         <div class="about-container">
-            <div class="monogram-box">
+            <div class="monogram-box reveal-left">
                 <div class="symbol">MA</div>
                 <svg class="monogram-divider" viewBox="0 0 100 12">
                     <path d="M0,6 L42,6 L50,1 L58,6 L100,6 M50,11 L44,6 L50,1 L56,6 Z" />
@@ -524,7 +705,7 @@
                 <div class="subtext">Conservação & Restauro</div>
             </div>
 
-            <div class="about-text">
+            <div class="about-text reveal-right">
                 <p>Sou <strong>Mikhaely Aparecida</strong>, conservadora-restauradora formada pelo <strong>IFMG (Campus Ouro Preto)</strong> e especialista em Bens Móveis pela <strong>Fundação de Artes de Ouro Preto (FAOP)</strong>.</p>
                 <p>Minha atuação une o rigor técnico da conservação tradicional a abordagens inovadoras — como o uso de fotogrametria aplicada ao patrimônio edificado e tecnologias de fabricação digital.</p>
                 <p>Trabalho com foco na preservação da memória física e cultural, pautando meus projetos na ética da reversibilidade, na intervenção mínima e na sensibilidade artística.</p>
@@ -538,23 +719,27 @@
         </div>
     </section>
 
-    <!-- ÁREAS DE ATUAÇÃO -->
+    <!-- ÁREAS DE ATUAÇÃO EDITORIAL -->
     <section id="especialidades">
-        <h2 class="section-title">Áreas de Atuação</h2>
+        <h2 class="section-title reveal">Áreas de Atuação</h2>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card reveal">
+                <div class="service-card-number">01</div>
                 <h3>Fotogrametria Digital</h3>
                 <p>Documentação e mapeamento tridimensional de precisão para acervos e estruturas arquitetônicas.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
+                <div class="service-card-number">02</div>
                 <h3>Restauro em Madeira</h3>
                 <p>Tratamento, imunização contra xilófagos, consolidação estrutural e restauração estética.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
+                <div class="service-card-number">03</div>
                 <h3>Cerâmica Fria & Modelagem</h3>
                 <p>Criação autoral e artesanal de peças utilitárias e decorativas em cerâmica fria.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card reveal">
+                <div class="service-card-number">04</div>
                 <h3>Documentos & Livros Raros</h3>
                 <p>Higienização, conservação preventiva de acervos bibliográficos e restauro de papel.</p>
             </div>
@@ -563,9 +748,9 @@
 
     <!-- PORTFÓLIO DE TRABALHOS -->
     <section id="portfolio">
-        <h2 class="section-title">Portfólio de Trabalhos</h2>
+        <h2 class="section-title reveal">Portfólio de Trabalhos</h2>
         
-        <div class="portfolio-tabs">
+        <div class="portfolio-tabs reveal">
             <button class="tab-btn active" onclick="filterPortfolio('todos', event)">Todos</button>
             <button class="tab-btn" onclick="filterPortfolio('fotogrametria', event)">Fotogrametria</button>
             <button class="tab-btn" onclick="filterPortfolio('madeira', event)">Restauro em Madeira</button>
@@ -576,7 +761,7 @@
         <div class="portfolio-grid">
             
             <!-- CARD FOTOGRAMETRIA -->
-            <div class="project-card" data-category="fotogrametria" onclick="openModal('fotogrametria')">
+            <div class="project-card reveal" data-category="fotogrametria" onclick="openModal('fotogrametria')">
                 <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.34 (2).jpeg" alt="Fotogrametria" class="card-img-cover">
                 <div class="project-info">
                     <span class="project-tag">Fotogrametria</span>
@@ -587,7 +772,7 @@
             </div>
 
             <!-- CARD RESTAURO MADEIRA -->
-            <div class="project-card" data-category="madeira" onclick="openModal('madeira')">
+            <div class="project-card reveal" data-category="madeira" onclick="openModal('madeira')">
                 <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.29.jpeg" alt="Restauro em Madeira" class="card-img-cover">
                 <div class="project-info">
                     <span class="project-tag">Restauro em Madeira</span>
@@ -598,7 +783,7 @@
             </div>
 
             <!-- CARD CERÂMICA FRIA -->
-            <div class="project-card" data-category="ceramica" onclick="openModal('ceramica')">
+            <div class="project-card reveal" data-category="ceramica" onclick="openModal('ceramica')">
                 <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.34 (1).jpeg" alt="Cerâmica Fria" class="card-img-cover">
                 <div class="project-info">
                     <span class="project-tag">Cerâmica Fria</span>
@@ -609,7 +794,7 @@
             </div>
 
             <!-- CARD LIVROS ANTIGOS -->
-            <div class="project-card" data-category="livros" onclick="openModal('livros')">
+            <div class="project-card reveal" data-category="livros" onclick="openModal('livros')">
                 <img src="Imagnes portifólio/Imagem do WhatsApp 2026-09-07 em 14.40.30.jpeg" alt="Livros e Documentos" class="card-img-cover">
                 <div class="project-info">
                     <span class="project-tag">Livros & Documentos</span>
@@ -655,7 +840,7 @@
 
                 <div class="modal-footer">
                     <a id="modalWhatsappLink" href="#" target="_blank" class="btn btn-primary" style="background-color: #25D366;">
-                        Solicitar Orçamento para este Tipo de Trabalho
+                        Solicitar Orçamento para este Tipo de Trabalho <span class="btn-arrow">↗</span>
                     </a>
                 </div>
 
@@ -664,17 +849,17 @@
     </div>
 
     <!-- CONTATO -->
-    <section id="contato" class="contact-section">
+    <section id="contato" class="contact-section reveal">
         <h2 class="section-title">Solicite um Diagnóstico</h2>
         <div class="contact-box">
             <p>Atendimento para projetos de conservação/restauro e encomendas em cerâmica fria para Ouro Preto e região.</p>
             
             <div class="social-buttons">
                 <a href="https://wa.me/5531999999999?text=Olá,%20Mikhaely!%20Gostaria%20de%20fazer%20um%20orçamento." target="_blank" class="social-btn whatsapp-btn">
-                    Falar pelo WhatsApp
+                    Falar pelo WhatsApp <span class="btn-arrow">↗</span>
                 </a>
                 <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="social-btn instagram-btn">
-                    Instagram Cerâmicas
+                    Instagram Cerâmicas <span class="btn-arrow">↗</span>
                 </a>
             </div>
         </div>
@@ -685,6 +870,29 @@
     </footer>
 
     <script>
+        // HEADER SCROLLED EFFECT
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        // REVEAL OBSERVER (INTERSECTION OBSERVER GLOBAL)
+        const revealObserver = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // DADOS DOS PROJETOS
         const folder = 'Imagnes portifólio/';
 
         const projectsData = {
@@ -815,18 +1023,27 @@
             document.body.style.overflow = 'hidden';
         }
 
+        // 11. TROCA SUAVE DE FOTO NA GALERIA DO MODAL
         function switchGalleryImage(index) {
             const imgData = currentProjectImages[index];
             if (!imgData) return;
 
-            document.getElementById('galleryLabel').innerText = imgData.label;
             const imgElem = document.getElementById('galleryImg');
-            imgElem.src = imgData.url;
+            imgElem.classList.add('changing');
+
+            setTimeout(() => {
+                imgElem.src = imgData.url;
+                document.getElementById('galleryLabel').innerText = imgData.label;
+
+                imgElem.onload = () => {
+                    imgElem.classList.remove('changing');
+                };
+                setTimeout(() => imgElem.classList.remove('changing'), 200);
+            }, 180);
 
             const thumbs = document.querySelectorAll('.thumb-item');
             thumbs.forEach((t, i) => {
-                if (i === index) t.classList.add('active');
-                else t.classList.remove('active');
+                t.classList.toggle('active', i === index);
             });
         }
 
@@ -843,6 +1060,7 @@
             if (e.key === 'Escape') closeModal();
         });
 
+        // FILTRO DE CATEGORIAS
         function filterPortfolio(category, event) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
