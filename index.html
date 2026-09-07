@@ -45,7 +45,7 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* HEADER & NAVEGAÇÃO */
+        /* HEADER & NAVEGAÇÃO (Integrado perfeitamente ao Hero) */
         header {
             background-color: var(--azul-marinho);
             color: var(--off-white);
@@ -53,7 +53,8 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            box-shadow: none; /* Removida a sombra que gerava a linha divisória */
+            border-bottom: 1px solid rgba(197, 160, 89, 0.25); /* Linha sutil dourada */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -283,9 +284,15 @@
             border-radius: 0 4px 4px 0;
         }
 
-        /* 2. ÁREAS DE ATUAÇÃO (BRANCO PURO) */
+        /* 2. ÁREAS DE ATUAÇÃO (TEXTURA DE TELA DE QUADRO + PARALLAX) */
         #especialidades {
-            background-color: var(--branco-puro);
+            background-image: linear-gradient(rgba(250, 248, 245, 0.82), rgba(250, 248, 245, 0.82)), 
+                              url('https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
         }
 
         .services-grid {
@@ -295,11 +302,12 @@
         }
 
         .service-card {
-            background-color: var(--off-white);
+            background-color: rgba(255, 255, 255, 0.88); /* Leve transparência para destacar a textura */
+            backdrop-filter: blur(4px);
             padding: 2.2rem 1.8rem;
             border-radius: 6px;
             border-top: 3px solid var(--verde-oliva);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s, box-shadow 0.3s;
             border-left: 1px solid var(--cinza-suave);
             border-right: 1px solid var(--cinza-suave);
@@ -308,7 +316,8 @@
 
         .service-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.95);
         }
 
         .service-card h3 {
@@ -319,7 +328,7 @@
 
         .service-card p {
             font-size: 0.92rem;
-            color: #555;
+            color: #444;
         }
 
         /* 3. PORTFÓLIO (OFF-WHITE) */
@@ -508,6 +517,10 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+            /* Em telas móveis o attachment fixed pode variar, mantemos a textura suave */
+            #especialidades {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
@@ -565,7 +578,7 @@
         </div>
     </section>
 
-    <!-- ESPECIALIDADES / ÁREAS DE ATUAÇÃO (BRANCO PURO) -->
+    <!-- ESPECIALIDADES / ÁREAS DE ATUAÇÃO (TEXTURA DE TELA DE QUADRO + PARALLAX) -->
     <section id="especialidades">
         <h2 class="section-title">Áreas de Atuação</h2>
         <div class="services-grid">
@@ -633,7 +646,7 @@
                 </div>
             </div>
 
-            <!-- ITEM 4: RESTAURO EM LIVROS (NOVO CARD) -->
+            <!-- ITEM 4: RESTAURO EM LIVROS -->
             <div class="project-card" data-category="livros">
                 <div class="project-img-placeholder">[ Processo de Restauro em Papel ]</div>
                 <div class="project-info">
